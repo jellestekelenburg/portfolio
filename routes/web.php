@@ -1,9 +1,10 @@
 <?php
 
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return Inertia::render('Home');
 })->name('home');
 
 //require __DIR__.'/settings.php';
