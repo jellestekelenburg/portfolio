@@ -4,8 +4,9 @@
 @theme {
     --heading: "Playfair Display", serif;
     --font-sans: "DM Sans", sans-serif;
-
-    --bg-gradient-up: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%, rgba(0, 146, 224, 0.44) 69.27%, #00eaff 100%)
+    --color-red-500: #FB3640;
+    --color-gray-900: #000F08;
+    --bg-gradient-up: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%, rgba(224, 0, 26, 0.44) 69.27%, #ff004d 100%)
 }
 
 .container {
