@@ -1,12 +1,16 @@
 @import 'tailwindcss';
 @import './components/hero.css';
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @theme {
     --heading: "Playfair Display", serif;
     --font-sans: "DM Sans", sans-serif;
-    --color-red-500: #FB3640;
-    --color-gray-900: #000F08;
-    --bg-gradient-up: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%, rgba(224, 0, 26, 0.44) 69.27%, #ff004d 100%)
+    /*--color-primary: #E3f272;*/
+    /*--color-gray-900: #26150b;*/
+    --color-primary: #c6ff33;
+    --color-gray-900: #151515;
+    --bg-gradient-up-dark: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%, rgb(21, 67, 4) 69.27%, #c6ff33 100%);
+    --bg-gradient-up: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%, rgb(214, 255, 200) 69.27%, #c6ff33 100%);
 }
 
 .container {
