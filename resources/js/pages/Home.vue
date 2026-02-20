@@ -18,7 +18,7 @@ import { ThemeSwitcher } from '@/components/ui/themeswitcher';
     <div class=" bg-gray-200 dark:bg-gray-900 min-h-screen">
         <section class="bg-gradient-up">
             <div class="container">
-                <div class="lg:py-40 py-24 border-x  border-black/5 dark:border-black/5 dark:border-white/5 relative">
+                <div class="lg:py-40 py-24 border-x  border-black/5 dark:border-white/5 relative">
                     <div class="absolute md:block hidden left-1/4 top-0 h-full w-px bg-black/5 dark:bg-white/5"></div>
                     <div class="absolute left-2/4 top-0 h-full w-px bg-black/5 dark:bg-white/5"></div>
                     <div class="absolute md:block hidden left-3/4 top-0 h-full w-px bg-black/5 dark:bg-white/5"></div>
@@ -37,7 +37,7 @@ import { ThemeSwitcher } from '@/components/ui/themeswitcher';
                             <Button
                                 as="a"
                                 href="#"
-                                class="h-auto rounded-lg bg-primary px-6 py-2.5 font-medium text-white hover:primary"
+                                class="h-auto rounded-lg bg-primary px-6 py-2.5 font-medium text-gray-800 hover:primary"
                             >
                                 Contact
                             </Button>
@@ -45,7 +45,7 @@ import { ThemeSwitcher } from '@/components/ui/themeswitcher';
                                 as="a"
                                 href="#"
                                 variant="outline"
-                                class="h-auto rounded-lg border-white/20 bg-transparent px-6 py-2.5 font-medium text-white shadow-none hover:border-white/40 hover:bg-transparent"
+                                class="h-auto rounded-lg border-black/20 dark:border-white/20 bg-transparent px-6 py-2.5 font-medium text-gray-900 dark:text-white shadow-none hover:border-black/40 dark:hover:border-white/40 hover:bg-transparent"
                             >
                                 Let's connect
                             </Button>
