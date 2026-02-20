@@ -10,7 +10,7 @@ import { ThemeSwitcher } from '@/components/ui/themeswitcher';
 
     <nav class="bg-gray-900">
         <div class="container py-6 flex items-center justify-between">
-            <h1 class="text-2xl italic text-white">Jelle</h1>
+            <span></span>
             <ThemeSwitcher />
         </div>
     </nav>
