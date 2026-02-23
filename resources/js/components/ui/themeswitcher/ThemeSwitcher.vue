@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { removeTheme, setTheme } from '@/composables/themeSwitcher';
+import { useTheme } from '@/composables/useTheme';
 import { ref } from 'vue';
 
 type Theme = 'light' | 'dark' | 'system';
@@ -39,11 +39,7 @@ function isActive(value: Theme) {
 function selectTheme(value: Theme) {
     currentTheme.value = value;
 
-    if (value === 'system') {
-        removeTheme();
-    } else {
-        setTheme(value);
-    }
+    useTheme().setTheme(value);
 }
 </script>
 <template>
