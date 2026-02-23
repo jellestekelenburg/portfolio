@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import { Button } from '@/components/ui/button';
+import { Menu } from '@/components/ui/menu';
 import { ThemeSwitcher } from '@/components/ui/themeswitcher';
 
 </script>
@@ -10,8 +11,11 @@ import { ThemeSwitcher } from '@/components/ui/themeswitcher';
 
     <nav class="bg-gray-900">
         <div class="container py-6 flex items-center justify-between">
-            <span></span>
-            <ThemeSwitcher />
+            <img src="/img/logo+t-d.svg" class="w-50" alt="">
+            <div class="flex gap-2 items-center">
+                <Menu/>
+                <ThemeSwitcher />
+            </div>
         </div>
     </nav>
 
@@ -24,8 +28,8 @@ import { ThemeSwitcher } from '@/components/ui/themeswitcher';
                     <div class="absolute md:block hidden left-3/4 top-0 h-full w-px bg-black/5 dark:bg-white/5"></div>
                     <div class="lg:w-3/5 px-2">
                         <h1 class="text-5xl text-gray-800 dark:text-white">
-                            I <span class="text-primary italic">build</span>
-                            & <span class="dark:text-primary italic">design</span>
+                            I <span class=" text-dark-primary dark:text-primary italic">build</span>
+                            & <span class="text-dark-primary dark:text-primary italic">design</span>
                             awesome things for the web.
                         </h1>
 
