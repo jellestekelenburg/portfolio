@@ -36,17 +36,13 @@ import { ThemeSwitcher } from '@/components/ui/themeswitcher';
                         <div class="mt-6 flex gap-3">
                             <Button
                                 as="a"
-                                href="#"
-                                class="h-auto rounded-lg bg-primary px-6 py-2.5 font-medium text-gray-800 hover:primary"
-                            >
+                                href="#">
                                 Contact
                             </Button>
                             <Button
                                 as="a"
                                 href="#"
-                                variant="outline"
-                                class="h-auto rounded-lg border-black/20 dark:border-white/20 bg-transparent px-6 py-2.5 font-medium text-gray-900 dark:text-white shadow-none hover:border-black/40 dark:hover:border-white/40 hover:bg-transparent"
-                            >
+                                variant="outline">
                                 Let's connect
                             </Button>
                         </div>
