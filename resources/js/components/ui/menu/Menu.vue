@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <ul class="flex items-center gap-x-6 text-sm text-white">
+    <ul class="flex items-center gap-x-6 text-sm text-white/80">
         <li><a href="/">Home</a></li>
         <li><a href="/">About</a></li>
         <li><a href="/">Projects</a></li>

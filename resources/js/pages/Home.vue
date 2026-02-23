@@ -9,10 +9,10 @@ import { ThemeSwitcher } from '@/components/ui/themeswitcher';
 <template>
     <Head title="Portfolio" />
 
-    <nav class="bg-gray-900">
+    <nav class="fixed w-full z-50 top-0 left-0">
         <div class="container py-6 flex items-center justify-between">
             <img src="/img/logo+t-d.svg" class="w-50" alt="">
-            <div class="flex gap-2 items-center">
+            <div class="flex gap-x-8 items-center">
                 <Menu/>
                 <ThemeSwitcher />
             </div>

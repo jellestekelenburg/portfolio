@@ -49,7 +49,7 @@ function selectTheme(value: Theme) {
 <template>
     <div class="text-sm relative">
         <span @click="toggleMenu" class="cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-8 fill-gray-800 dark:fill-gray-100" viewBox="0 0 640 640"><path d="M512 320C512 214 426 128 320 128L320 512C426 512 512 426 512 320zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 fill-gray-800 dark:fill-gray-100" viewBox="0 0 640 640"><path d="M512 320C512 214 426 128 320 128L320 512C426 512 512 426 512 320zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z"/></svg>
         </span>
         <div :class="showMenu ? '' : 'hidden'" class="flex flex-col items-start justify-start gap-2 rounded-md bg-gray-800 p-2 text-white absolute -bottom-1 right-0 translate-y-full z-10">
             <button
