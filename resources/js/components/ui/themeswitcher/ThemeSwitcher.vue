@@ -45,15 +45,15 @@ function selectTheme(value: Theme) {
 <template>
     <div class="text-sm relative">
         <span @click="toggleMenu" class="cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 fill-gray-800 dark:fill-gray-100" viewBox="0 0 640 640"><path d="M512 320C512 214 426 128 320 128L320 512C426 512 512 426 512 320zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 fill-gray-800 dark:fill-gray-100 hover:scale-110 transition-all" viewBox="0 0 640 640"><path d="M512 320C512 214 426 128 320 128L320 512C426 512 512 426 512 320zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z"/></svg>
         </span>
-        <div :class="showMenu ? '' : 'hidden'" class="flex flex-col items-start justify-start gap-2 rounded-md bg-gray-800 p-2 text-white absolute -bottom-1 right-0 translate-y-full z-10">
+        <div :class="showMenu ? '' : 'hidden'" class="flex flex-col items-start justify-start gap-2 rounded-md  bg-gray-100 dark:bg-gray-800 p-2 text-gray-800 dark:text-white absolute -bottom-1 right-0 translate-y-full z-10">
             <button
                 v-for="option in themeOptions"
                 :key="option.value"
                 type="button"
                 class="cursor-pointer flex w-full gap-1 items-center px-2 py-1 rounded-sm transition-colors"
-                :class="isActive(option.value) ? 'bg-white/20 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white'"
+                :class="isActive(option.value) ? 'bg-gray-800/10 dark:bg-white/20 text-gray-9800  dark:text-white' : 'text-gray-800/80 dark:text-white/80 hover:bg-gray-800/10 dark:hover:bg-white/10 dark:hover:text-gray-900 dark:hover:text-white'"
                 @click="selectTheme(option.value)"
             >
                 <svg class="fill-current size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">

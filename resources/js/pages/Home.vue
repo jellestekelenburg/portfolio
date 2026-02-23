@@ -16,14 +16,14 @@ import { Navigation } from '@/components/ui/navigation';
                     <div class="absolute md:block hidden left-1/4 top-0 h-full w-px bg-black/5 dark:bg-white/5"></div>
                     <div class="absolute left-2/4 top-0 h-full w-px bg-black/5 dark:bg-white/5"></div>
                     <div class="absolute md:block hidden left-3/4 top-0 h-full w-px bg-black/5 dark:bg-white/5"></div>
-                    <div class="lg:w-3/5 px-2">
+                    <div class="lg:w-3/5">
                         <h1 class="text-5xl text-gray-800 dark:text-white">
-                            I <span class=" text-dark-primary dark:text-primary italic">build</span>
+                            I <span class="text-dark-primary dark:text-primary italic">build</span>
                             & <span class="text-dark-primary dark:text-primary italic">design</span>
                             awesome things for the web.
                         </h1>
 
-                        <p class="text-gray-500 mt-5 w-4/5">
+                        <p class="text-gray-600 dark:text-gray-400 mt-5 w-4/5">
                             Hi, I'm Jelle — a developer from the Netherlands focused on building fast, modern, and user-friendly web experiences.
                         </p>
 

@@ -6,6 +6,7 @@ import { ref, watch } from 'vue';
 
 const { selectedTheme, resolvedTheme } = useTheme();
 const dark = ref(true)
+const active = ref(false);
 watch(
     [selectedTheme, resolvedTheme],
     ([selected, resolved]) => {
@@ -23,11 +24,13 @@ let classList = [
 ];
 const handleScroll = () => {
     const nav = document.querySelector('nav');
-    if (window.scrollY > 100) {
+    if (window.scrollY > 1) {
         nav?.classList.add(...classList);
+        active.value = true;
     }
     else {
         nav?.classList.remove(...classList);
+        active.value = false;
     }
 }
 
@@ -36,11 +39,13 @@ window.addEventListener('scroll', handleScroll);
 
 <template>
     <nav class="fixed w-full z-50 top-0 left-0 transition">
-        <div class="container py-4 flex items-center justify-between">
-            <img :src="dark ? '/img/branding/logo+t-d.svg' : '/img/branding/logo+t.svg'" class="w-50" alt="">
-            <div class="flex gap-x-8 items-center">
-                <Menu/>
-                <ThemeSwitcher />
+        <div class="container">
+            <div :class="!active ? 'border-b border-black/5 dark:border-white/5' : ''" class="py-4 flex items-center justify-between">
+                <img :src="dark ? '/img/branding/logo+t-d.svg' : '/img/branding/logo+t.svg'" class="w-50" alt="">
+                <div class="flex gap-x-8 items-center">
+                    <Menu/>
+                    <ThemeSwitcher />
+                </div>
             </div>
         </div>
     </nav>
