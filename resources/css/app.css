@@ -8,10 +8,11 @@
     /*--color-primary: #E3f272;*/
     /*--color-gray-900: #26150b;*/
     --color-primary: #c6ff33;
-    --color-dark-primary: #8dca1e;
+    --color-dark-primary: #72b01D;
     --color-gray-900: #151515;
+    --color-gray-50: #f3eff5;
     --bg-gradient-up-dark: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%, rgb(21, 67, 4) 69.27%, #c6ff33 100%);
-    --bg-gradient-up: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%, rgb(214, 255, 200) 69.27%, #c6ff33 100%);
+    --bg-gradient-up: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%, rgb(214, 255, 200) 69.27%, #a3ff33 100%);
 }
 
 .container {
