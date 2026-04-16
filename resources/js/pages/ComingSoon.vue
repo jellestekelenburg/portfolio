@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useTheme } from '@/composables/useTheme';
+
+useTheme().setTheme('dark');
+</script>
 <template>
     <div class="min-h-screen bg-gray-900">
         <section class="bg-gradient-up">
@@ -6,7 +10,11 @@
                 class="mx-auto flex h-screen max-w-7xl items-center justify-center px-6"
             >
                 <div class="flex flex-col text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" class="size-30 -mt-20 mx-auto mb-10 fill-primary">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 40 40"
+                        class="mx-auto -mt-20 mb-10 size-30 fill-primary"
+                    >
                         <g id="Layer_1">
                             <g id="logogram">
                                 <path
