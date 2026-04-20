@@ -8,7 +8,7 @@ import { useTheme } from '@/composables/useTheme';
 new Lenis({
     autoRaf: true,
 });
-import 'lenis/dist/lenis.css'
+import 'lenis/dist/lenis.css';
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({

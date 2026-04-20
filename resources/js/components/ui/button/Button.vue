@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Link } from "@inertiajs/vue3"
 import type { PrimitiveProps } from "reka-ui"
+import { Primitive } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { computed, useAttrs, useSlots } from "vue"
 import type { ButtonVariants } from "."
-import { Primitive } from "reka-ui"
-import { cn } from "@/lib/utils"
 import { buttonVariants } from "."
+import { cn } from "@/lib/utils"
 
 defineOptions({
   inheritAttrs: false,
@@ -54,6 +54,8 @@ const pixelBoltPixels = Array.from({ length: 25 }, (_, index) => {
 })
 
 const isPixelBolt = computed(() => props.variant === "default")
+const isOutline = computed(() => props.variant === "outline")
+const hasAnimatedText = computed(() => isPixelBolt.value || isOutline.value)
 const isExternalHref = computed(() => /^https?:\/\//i.test(props.href ?? ""))
 const isInternalHref = computed(() => props.href?.startsWith("/") ?? false)
 
@@ -111,13 +113,14 @@ const characterCount = computed(() => Math.max(slotText.value.length, 1))
         buttonVariants({ variant, size }),
         isPixelBolt &&
           'button-pixel-bolt bg-transparent px-0 py-0 dark:bg-transparent',
+        isOutline && 'button-outline',
         props.class,
       )
     "
-    :style="isPixelBolt ? { '--characters': characterCount } : undefined"
+    :style="hasAnimatedText ? { '--characters': characterCount } : undefined"
   >
-    <template v-if="isPixelBolt">
-      <span class="button-pixel-bolt__bg" aria-hidden="true">
+    <template v-if="hasAnimatedText">
+      <span v-if="isPixelBolt" class="button-pixel-bolt__bg" aria-hidden="true">
         <span class="button-pixel-bolt__bg-mid"></span>
         <span class="button-pixel-bolt__pixels">
           <span
@@ -134,8 +137,17 @@ const characterCount = computed(() => Math.max(slotText.value.length, 1))
         </span>
       </span>
 
-      <span class="button-pixel-bolt__inner" :data-text="slotText">
-        <span class="button-pixel-bolt__text">
+      <span
+        :class="
+          isPixelBolt ? 'button-pixel-bolt__inner' : 'button-outline__inner'
+        "
+        :data-text="slotText"
+      >
+        <span
+          :class="
+            isPixelBolt ? 'button-pixel-bolt__text' : 'button-outline__text'
+          "
+        >
           <slot />
         </span>
       </span>
@@ -156,6 +168,12 @@ const characterCount = computed(() => Math.max(slotText.value.length, 1))
   grid-template-areas: "button";
   -webkit-tap-highlight-color: transparent;
   @apply relative isolate inline-grid select-none overflow-visible text-gray-50 no-underline transition-transform dark:text-gray-900;
+}
+
+.button-outline {
+  grid-template-areas: "button";
+  -webkit-tap-highlight-color: transparent;
+  @apply relative inline-grid select-none overflow-hidden no-underline;
 }
 
 .button-pixel-bolt::after {
@@ -202,7 +220,13 @@ const characterCount = computed(() => Math.max(slotText.value.length, 1))
   @apply grid items-center overflow-hidden px-3 py-0 pr-12;
 }
 
-.button-pixel-bolt__inner::after {
+.button-outline__inner {
+  grid-area: button;
+  @apply grid min-h-full items-center overflow-hidden;
+}
+
+.button-pixel-bolt__inner::after,
+.button-outline__inner::after {
   content: attr(data-text);
   grid-area: 1 / 1;
   pointer-events: none;
@@ -213,18 +237,22 @@ const characterCount = computed(() => Math.max(slotText.value.length, 1))
   transition: width 0s;
 }
 
-.button-pixel-bolt__text {
+.button-pixel-bolt__text,
+.button-outline__text {
   grid-area: 1 / 1;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .button-pixel-bolt:is(:hover, :focus-visible) .button-pixel-bolt__inner::after {
+  .button-pixel-bolt:is(:hover, :focus-visible)
+    .button-pixel-bolt__inner::after,
+  .button-outline:is(:hover, :focus-visible) .button-outline__inner::after {
     width: 100%;
     opacity: 1;
     transition: width 0.3s steps(var(--characters));
   }
 
-  .button-pixel-bolt:is(:hover, :focus-visible) .button-pixel-bolt__text {
+  .button-pixel-bolt:is(:hover, :focus-visible) .button-pixel-bolt__text,
+  .button-outline:is(:hover, :focus-visible) .button-outline__text {
     opacity: 0;
   }
 
