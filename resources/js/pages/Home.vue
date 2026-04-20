@@ -46,7 +46,9 @@ import { Navigation } from '@/components/ui/navigation';
                         </p>
 
                         <div class="mt-6 flex gap-3">
-                            <Button as="a" href="#" variant="default"> Contact </Button>
+                            <Button href="/" variant="default">
+                                Contact
+                            </Button>
                             <Button as="a" href="#" variant="outline">
                                 Let's connect
                             </Button>
@@ -133,5 +135,4 @@ import { Navigation } from '@/components/ui/navigation';
             </div>
         </section>
     </div>
-
 </template>

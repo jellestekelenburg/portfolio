@@ -17,7 +17,7 @@
     @vite(['resources/js/app.ts'])
 
     <x-inertia::head>
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Jelle Stekelenburg') }}</title>
     </x-inertia::head>
 </head>
 <body class="antialiased bg-white dark:bg-gray-900">
