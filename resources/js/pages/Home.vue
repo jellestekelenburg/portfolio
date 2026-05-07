@@ -167,7 +167,9 @@ import { Navigation } from '@/components/ui/navigation';
         <section>
             <div class="container">
                 <div class="grid border border-black/5 dark:border-white/5">
-                    <div class="px-10 py-30 text-center">
+                    <div
+                        class="border-b border-black/5 px-10 py-30 text-center dark:border-white/5"
+                    >
                         <h3
                             class="font-serif text-5xl text-gray-800 dark:text-gray-200"
                         >
@@ -179,7 +181,7 @@ import { Navigation } from '@/components/ui/navigation';
                             projects.
                         </h3>
                         <p class="mt-3 dark:text-gray-400">
-                            You can follow most of my projects via
+                            You can follow most of my work via
                             <a
                                 class="underline transition hover:decoration-dark-primary dark:hover:decoration-primary"
                                 href="https://github.com/jellestekelenburg"
@@ -188,6 +190,87 @@ import { Navigation } from '@/components/ui/navigation';
                                 >GitHub</a
                             >
                         </p>
+                    </div>
+
+                    <div
+                        class="grid gap-x-10 gap-y-6 border-b border-black/5 p-10 lg:grid-cols-2 dark:border-white/5"
+                    >
+                        <div class="flex h-full flex-col justify-center">
+                            <h3
+                                class="mb-4 font-sans text-3xl font-bold text-gray-800 dark:text-gray-200"
+                            >
+                                File manager
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                A modern file management application built with
+                                Laravel 13, Vue and InertiaJS. The project
+                                provides a clean and responsive interface for
+                                uploading, organizing and managing files through
+                                Amazon AWS S3 cloud storage. It combines the
+                                performance of Laravel with the seamless SPA
+                                experience of InertiaJS to create a fast,
+                                scalable and user-friendly file management
+                                system.
+                            </p>
+                            <div class="mt-6 flex gap-4">
+                                <Button
+                                    :variant="'default'"
+                                    :href="'/projects/file-manager'"
+                                >
+                                    Read more
+                                </Button>
+                                <Button
+                                    :variant="'outline'"
+                                    :href="'https://github.com/jellestekelenburg/file-manager'"
+                                >
+                                    Github
+                                </Button>
+                            </div>
+                        </div>
+                        <div class="-mr-8 -mb-10">
+                            <img src="/img/file-manager.webp" alt="" />
+                        </div>
+                    </div>
+
+                    <div
+                        class="grid gap-x-10 gap-y-6 border-b border-black/5 p-10 lg:grid-cols-2 dark:border-white/5"
+                    >
+                        <div class="-ms-8 -mb-10">
+                            <img src="/img/file-manager.webp" alt="" />
+                        </div>
+
+                        <div class="flex h-full flex-col justify-center">
+                            <h3
+                                class="mb-4 font-sans text-3xl font-bold text-gray-800 dark:text-gray-200"
+                            >
+                                File manager
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                A modern file management application built with
+                                Laravel 13, Vue and InertiaJS. The project
+                                provides a clean and responsive interface for
+                                uploading, organizing and managing files through
+                                Amazon AWS S3 cloud storage. It combines the
+                                performance of Laravel with the seamless SPA
+                                experience of InertiaJS to create a fast,
+                                scalable and user-friendly file management
+                                system.
+                            </p>
+                            <div class="mt-6 flex gap-4">
+                                <Button
+                                    :variant="'default'"
+                                    :href="'/projects/file-manager'"
+                                >
+                                    Read more
+                                </Button>
+                                <Button
+                                    :variant="'outline'"
+                                    :href="'https://github.com/jellestekelenburg/file-manager'"
+                                >
+                                    Github
+                                </Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
