@@ -179,7 +179,7 @@ import { Navigation } from '@/components/ui/navigation';
                             projects.
                         </h3>
                         <p class="mt-3 dark:text-gray-400">
-                            You can follow most of my projects via my
+                            You can follow most of my projects via
                             <a
                                 class="underline transition hover:decoration-dark-primary dark:hover:decoration-primary"
                                 href="https://github.com/jellestekelenburg"
