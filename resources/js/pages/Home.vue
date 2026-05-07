@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import { Button } from '@/components/ui/button';
+import Lines from '@/components/ui/Lines.vue';
 import { Navigation } from '@/components/ui/navigation';
+import { projects } from '@/data/projects';
 </script>
 
 <template>
@@ -9,21 +11,13 @@ import { Navigation } from '@/components/ui/navigation';
 
     <Navigation />
 
-    <div class="min-h-screen bg-gray-200 dark:bg-gray-900">
+    <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
         <section class="bg-gradient-up">
             <div class="container">
                 <div
                     class="relative border-x border-black/5 py-28 md:py-36 lg:py-50 dark:border-white/5"
                 >
-                    <div
-                        class="absolute top-0 left-1/4 hidden h-full w-px bg-black/5 md:block dark:bg-white/5"
-                    ></div>
-                    <div
-                        class="absolute top-0 left-1/2 h-full w-px bg-black/5 dark:bg-white/5"
-                    ></div>
-                    <div
-                        class="absolute top-0 left-3/4 hidden h-full w-px bg-black/5 md:block dark:bg-white/5"
-                    ></div>
+                    <Lines />
                     <div class="lg:w-2/3">
                         <h1 class="text-6xl text-gray-600 dark:text-white">
                             I
@@ -168,8 +162,15 @@ import { Navigation } from '@/components/ui/navigation';
             <div class="container">
                 <div class="grid border border-black/5 dark:border-white/5">
                     <div
-                        class="border-b border-black/5 px-10 py-30 text-center dark:border-white/5"
+                        class="relative overflow-hidden border-b border-black/5 px-10 py-30 text-center dark:border-white/5"
                     >
+                        <div
+                            class="absolute bottom-0 left-0 z-0 size-100 -translate-x-1/3 translate-y-1/2 bg-radial from-dark-primary/80 to-transparent to-50% blur-2xl dark:from-primary/80"
+                        ></div>
+                        <div
+                            class="absolute right-0 bottom-0 z-0 size-100 translate-x-1/3 -translate-y-1/3 bg-radial from-dark-primary/80 to-transparent to-50% blur-2xl dark:from-primary/80"
+                        ></div>
+                        <Lines />
                         <h3
                             class="font-serif text-5xl text-gray-800 dark:text-gray-200"
                         >
@@ -193,83 +194,38 @@ import { Navigation } from '@/components/ui/navigation';
                     </div>
 
                     <div
-                        class="grid gap-x-10 gap-y-6 border-b border-black/5 p-10 lg:grid-cols-2 dark:border-white/5"
+                        class="group grid gap-x-10 gap-y-6 border-b border-black/5 p-10 lg:grid-cols-2 dark:border-white/5"
+                        v-for="project in projects"
+                        :key="project.title"
                     >
                         <div class="flex h-full flex-col justify-center">
                             <h3
                                 class="mb-4 font-sans text-3xl font-bold text-gray-800 dark:text-gray-200"
                             >
-                                File manager
+                                {{ project.title }}
                             </h3>
                             <p class="text-gray-600 dark:text-gray-400">
-                                A modern file management application built with
-                                Laravel 13, Vue and InertiaJS. The project
-                                provides a clean and responsive interface for
-                                uploading, organizing and managing files through
-                                Amazon AWS S3 cloud storage. It combines the
-                                performance of Laravel with the seamless SPA
-                                experience of InertiaJS to create a fast,
-                                scalable and user-friendly file management
-                                system.
+                                {{ project.description }}
                             </p>
                             <div class="mt-6 flex gap-4">
                                 <Button
                                     :variant="'default'"
-                                    :href="'/projects/file-manager'"
+                                    :href="project.href"
                                 >
                                     Read more
                                 </Button>
                                 <Button
                                     :variant="'outline'"
-                                    :href="'https://github.com/jellestekelenburg/file-manager'"
+                                    :href="project.github"
                                 >
                                     Github
                                 </Button>
                             </div>
                         </div>
-                        <div class="-mr-8 -mb-10">
+                        <div
+                            class="-mb-10 group-odd:-order-1 group-odd:-ml-8 group-even:-mr-8"
+                        >
                             <img src="/img/file-manager.webp" alt="" />
-                        </div>
-                    </div>
-
-                    <div
-                        class="grid gap-x-10 gap-y-6 border-b border-black/5 p-10 lg:grid-cols-2 dark:border-white/5"
-                    >
-                        <div class="-ms-8 -mb-10">
-                            <img src="/img/file-manager.webp" alt="" />
-                        </div>
-
-                        <div class="flex h-full flex-col justify-center">
-                            <h3
-                                class="mb-4 font-sans text-3xl font-bold text-gray-800 dark:text-gray-200"
-                            >
-                                File manager
-                            </h3>
-                            <p class="text-gray-600 dark:text-gray-400">
-                                A modern file management application built with
-                                Laravel 13, Vue and InertiaJS. The project
-                                provides a clean and responsive interface for
-                                uploading, organizing and managing files through
-                                Amazon AWS S3 cloud storage. It combines the
-                                performance of Laravel with the seamless SPA
-                                experience of InertiaJS to create a fast,
-                                scalable and user-friendly file management
-                                system.
-                            </p>
-                            <div class="mt-6 flex gap-4">
-                                <Button
-                                    :variant="'default'"
-                                    :href="'/projects/file-manager'"
-                                >
-                                    Read more
-                                </Button>
-                                <Button
-                                    :variant="'outline'"
-                                    :href="'https://github.com/jellestekelenburg/file-manager'"
-                                >
-                                    Github
-                                </Button>
-                            </div>
                         </div>
                     </div>
                 </div>

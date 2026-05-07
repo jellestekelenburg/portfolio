@@ -5,9 +5,9 @@
 @theme {
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'DM Sans', sans-serif;
-    --font-grotesk: "Space Grotesk", sans-serif;
+    --font-grotesk: 'Space Grotesk', sans-serif;
     --color-primary: hsl(76.76, 100%, 60%);
-    --color-dark-primary: hsl(76.76, 70%, 40%);
+    --color-dark-primary: hsl(76.76, 80%, 45%);
     --color-gray-900: hsl(0, 0%, 8.24%);
     --color-gray-50: hsl(285, 18.18%, 95.69%);
     --pixel-size: 0.45rem;
