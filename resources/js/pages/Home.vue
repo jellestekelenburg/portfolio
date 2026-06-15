@@ -11,6 +11,8 @@ import { projects } from '@/data/projects';
 
     <Navigation />
 
+    <div class="grain-overlay"></div>
+
     <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
         <section class="bg-gradient-up">
             <div class="container">

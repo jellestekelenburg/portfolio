@@ -39,3 +39,18 @@
 .container {
     @apply mx-auto max-w-6xl px-6 lg:px-8;
 }
+
+.grain-overlay {
+    background-image: url('/img/grain.gif');
+    background-size: 300px;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0.05;
+}

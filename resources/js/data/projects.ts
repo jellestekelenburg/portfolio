@@ -9,8 +9,7 @@ export const projects = [
     },
     {
         title: 'Portfolio',
-        description:
-            'lorem ipsum',
+        description: 'lorem ipsum',
         image: '/img/file-manager.webp',
         href: '/projects/file-manager',
         github: 'https://github.com/jellestekelenburg/file-manager',
