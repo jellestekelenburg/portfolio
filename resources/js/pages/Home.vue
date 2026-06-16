@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
+import TechStack from '@/components/TechStack.vue';
 import { Button } from '@/components/ui/button';
 import Lines from '@/components/ui/Lines.vue';
 import { Navigation } from '@/components/ui/navigation';
@@ -233,5 +234,7 @@ import { projects } from '@/data/projects';
                 </div>
             </div>
         </section>
+
+        <TechStack />
     </div>
 </template>
