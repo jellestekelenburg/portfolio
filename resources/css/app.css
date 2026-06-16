@@ -42,7 +42,7 @@
 
 .grain-overlay {
     background-image: url('/img/grain.gif');
-    background-size: 300px;
+    background-size: 500px;
     background-position: center;
     width: 100vw;
     height: 100vh;
@@ -52,5 +52,5 @@
     right: 0;
     bottom: 0;
     pointer-events: none;
-    opacity: 0.05;
+    opacity: 0.03;
 }
