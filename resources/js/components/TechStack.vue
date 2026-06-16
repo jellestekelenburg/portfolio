@@ -48,7 +48,9 @@ const pixelDigits: Record<number, PixelDigit> = {
         active: [1, 5, 6, 10, 11, 15, 16, 17, 18, 19, 20, 25, 30, 35],
     },
     5: {
-        active: [1, 2, 3, 4, 5, 6, 11, 16, 17, 18, 19, 25, 26, 30, 32, 33, 34],
+        active: [
+            1, 2, 3, 4, 5, 6, 11, 16, 17, 18, 19, 20, 25, 30, 31, 32, 33, 34,
+        ],
     },
     6: {
         active: [2, 3, 4, 6, 11, 16, 17, 18, 19, 21, 25, 26, 30, 32, 33, 34],
@@ -56,14 +58,14 @@ const pixelDigits: Record<number, PixelDigit> = {
 };
 
 const pixelRevealFrames = [
-    [18, 3, 31, 10, 24],
-    [7, 20, 2, 29, 15],
-    [33, 12, 26, 5, 22],
-    [1, 19, 34, 9, 16],
-    [27, 4, 25, 11, 30],
-    [14, 21, 32, 6, 35],
-    [8, 23, 13, 28, 17],
+    [18, 3, 31, 10, 24, 7, 35],
+    [20, 2, 29, 15, 33, 12, 26],
+    [5, 22, 1, 19, 34, 9, 16],
+    [27, 4, 25, 11, 30, 14, 21],
+    [32, 6, 8, 23, 13, 28, 17],
 ];
+
+const pixelStartOff = [4, 9, 13, 17, 22, 26, 31, 35];
 
 const pixelIds = Array.from({ length: 35 }, (_, index) => index + 1);
 
@@ -79,10 +81,8 @@ const pixelFrame = (pixelId: number): number => {
     return frame === -1 ? 0 : frame;
 };
 
-const pixelOpacityFrames = (digit: number, pixelId: number): number[] => {
-    const finalOpacity = isActivePixel(digit, pixelId) ? 1 : 0;
-
-    return [0, 1, 0, 1, finalOpacity];
+const isStartPixel = (pixelId: number): boolean => {
+    return !pixelStartOff.includes(pixelId);
 };
 
 const iconUrl = (slug: string, color: string): string =>
@@ -194,7 +194,7 @@ const shouldReduceMotion = useReducedMotion();
             >
                 <div
                     v-if="!shouldReduceMotion"
-                    class="hidden items-start border-y border-black/5 lg:grid lg:grid-cols-[0.9fr_1.1fr] dark:border-white/5"
+                    class="hidden items-start border-y border-black/5 lg:grid lg:grid-cols-2 dark:border-white/5"
                 >
                     <aside
                         class="sticky top-0 flex h-screen self-start overflow-hidden border-r border-black/5 dark:border-white/5"
@@ -259,10 +259,11 @@ const shouldReduceMotion = useReducedMotion();
                     </aside>
 
                     <div class="relative">
+                        <Lines />
                         <motion.article
                             v-for="(category, index) in technologyCategories"
                             :key="category.title"
-                            class="relative flex min-h-screen items-center border-b border-black/5 p-10 last:border-b-0 dark:border-white/5"
+                            class="relative flex min-h-screen items-center"
                             :initial="{
                                 opacity: 0,
                                 y: 72,
@@ -281,11 +282,9 @@ const shouldReduceMotion = useReducedMotion();
                                 ease: [0.22, 1, 0.36, 1],
                             }"
                         >
-                            <div
-                                class="relative w-full border border-black/5 p-8 backdrop-blur-3xl dark:border-white/8 dark:bg-gray-950/50"
-                            >
+                            <div class="relative w-full p-8">
                                 <div
-                                    class="flex min-h-124 flex-col justify-between gap-12"
+                                    class="flex flex-col justify-between gap-12"
                                 >
                                     <div
                                         class="flex items-start justify-between gap-8"
@@ -306,14 +305,11 @@ const shouldReduceMotion = useReducedMotion();
                                             class="flex flex-col items-end gap-5"
                                             aria-hidden="true"
                                         >
-                                            <span
-                                                class="grid grid-cols-5 grid-rows-7"
-                                                :class="`--number-${index + 1}`"
-                                            >
+                                            <span class="pixel-digit">
                                                 <motion.span
                                                     v-for="pixelId in pixelIds"
                                                     :key="pixelId"
-                                                    class="pixel-digit__pixel size-(--pixel-size)"
+                                                    class="pixel-digit__pixel"
                                                     :class="{
                                                         'is-active':
                                                             isActivePixel(
@@ -321,28 +317,31 @@ const shouldReduceMotion = useReducedMotion();
                                                                 pixelId,
                                                             ),
                                                     }"
-                                                    :initial="{ opacity: 0 }"
+                                                    :initial="{
+                                                        opacity: isStartPixel(
+                                                            pixelId,
+                                                        )
+                                                            ? 1
+                                                            : 0,
+                                                    }"
                                                     :whileInView="{
-                                                        opacity:
-                                                            pixelOpacityFrames(
-                                                                index + 1,
-                                                                pixelId,
-                                                            ),
+                                                        opacity: isActivePixel(
+                                                            index + 1,
+                                                            pixelId,
+                                                        )
+                                                            ? 1
+                                                            : 0,
                                                     }"
                                                     :viewport="{
                                                         once: false,
                                                         amount: 0.65,
                                                     }"
                                                     :transition="{
-                                                        duration: 0.34,
+                                                        duration: 0,
                                                         delay:
                                                             pixelFrame(
                                                                 pixelId,
-                                                            ) * 0.04,
-                                                        times: [
-                                                            0, 0.18, 0.38, 0.62,
-                                                            1,
-                                                        ],
+                                                            ) * 0.1,
                                                     }"
                                                 ></motion.span>
                                             </span>
@@ -355,7 +354,7 @@ const shouldReduceMotion = useReducedMotion();
                                                 technology, technologyIndex
                                             ) in category.technologies"
                                             :key="technology.name"
-                                            class="flex min-h-18 items-center gap-4 border border-black/5 p-4 transition duration-300 hover:border-dark-primary/25 dark:border-white/6 dark:hover:border-primary/25"
+                                            class="flex min-h-18 items-center gap-4 p-4 transition duration-300 hover:border-dark-primary/25 dark:hover:border-primary/25"
                                             :initial="{
                                                 opacity: 0,
                                                 y: 18,
@@ -548,7 +547,19 @@ const shouldReduceMotion = useReducedMotion();
 <style scoped>
 @reference '#app.css';
 
+.pixel-digit {
+    --pixel-digit-size: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(5, var(--pixel-digit-size));
+    grid-template-rows: repeat(7, var(--pixel-digit-size));
+    gap: 0;
+    line-height: 0;
+}
+
 .pixel-digit__pixel {
+    display: block;
+    width: var(--pixel-digit-size);
+    height: var(--pixel-digit-size);
     opacity: 0;
     @apply bg-dark-primary dark:bg-primary;
 }

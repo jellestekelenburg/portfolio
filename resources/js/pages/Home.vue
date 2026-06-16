@@ -197,7 +197,7 @@ import { projects } from '@/data/projects';
                     </div>
 
                     <div
-                        class="group grid gap-x-10 gap-y-6 border-b border-black/5 p-10 lg:grid-cols-2 dark:border-white/5"
+                        class="group grid gap-x-10 gap-y-6 border-b border-black/5 p-10 last:border-b-0 lg:grid-cols-2 dark:border-white/5"
                         v-for="project in projects"
                         :key="project.title"
                     >

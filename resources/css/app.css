@@ -40,6 +40,12 @@
     @apply mx-auto max-w-6xl px-6 lg:px-8;
 }
 
+body,
+html {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
 .grain-overlay {
     background-image: url('/img/grain.gif');
     background-size: 500px;
@@ -53,4 +59,5 @@
     bottom: 0;
     pointer-events: none;
     opacity: 0.03;
+    z-index: 999999;
 }
