@@ -32,62 +32,57 @@ type TechnologyCategory = {
 
 type PixelDigit = {
     active: number[];
-    frames: number[][];
 };
 
 const pixelDigits: Record<number, PixelDigit> = {
     1: {
-        active: [3, 7, 8, 13, 18, 23, 27, 28, 29],
-        frames: [[3], [7, 8], [13], [18], [23], [27, 28, 29]],
+        active: [3, 7, 8, 13, 18, 23, 28, 32, 33, 34],
     },
     2: {
-        active: [2, 3, 4, 5, 10, 15, 19, 23, 27, 28, 29, 30],
-        frames: [[2, 3, 4], [5, 10], [15], [19], [23], [27, 28, 29, 30]],
+        active: [2, 3, 4, 6, 10, 15, 19, 23, 27, 31, 32, 33, 34, 35],
     },
     3: {
-        active: [1, 2, 3, 4, 10, 14, 15, 19, 20, 26, 27, 28, 29],
-        frames: [[1, 2, 3, 4], [10], [14, 15], [19, 20], [26, 27, 28, 29]],
+        active: [2, 3, 4, 6, 10, 15, 18, 19, 25, 26, 30, 32, 33, 34],
     },
     4: {
-        active: [1, 5, 6, 10, 11, 12, 13, 14, 15, 20, 25, 30],
-        frames: [[1, 5], [6, 10], [11, 12, 13, 14, 15], [20], [25], [30]],
+        active: [1, 5, 6, 10, 11, 15, 16, 17, 18, 19, 20, 25, 30, 35],
     },
     5: {
-        active: [1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 20, 25, 26, 27, 28, 29],
-        frames: [
-            [1, 2, 3, 4, 5],
-            [6],
-            [11, 12, 13, 14],
-            [20],
-            [25],
-            [26, 27, 28, 29],
-        ],
+        active: [1, 2, 3, 4, 5, 6, 11, 16, 17, 18, 19, 25, 26, 30, 32, 33, 34],
     },
     6: {
-        active: [2, 3, 4, 6, 11, 12, 13, 14, 16, 20, 21, 25, 27, 28, 29],
-        frames: [
-            [2, 3, 4],
-            [6],
-            [11, 12, 13, 14],
-            [16, 20],
-            [21, 25],
-            [27, 28, 29],
-        ],
+        active: [2, 3, 4, 6, 11, 16, 17, 18, 19, 21, 25, 26, 30, 32, 33, 34],
     },
 };
 
-const pixelIds = Array.from({ length: 30 }, (_, index) => index + 1);
+const pixelRevealFrames = [
+    [18, 3, 31, 10, 24],
+    [7, 20, 2, 29, 15],
+    [33, 12, 26, 5, 22],
+    [1, 19, 34, 9, 16],
+    [27, 4, 25, 11, 30],
+    [14, 21, 32, 6, 35],
+    [8, 23, 13, 28, 17],
+];
+
+const pixelIds = Array.from({ length: 35 }, (_, index) => index + 1);
 
 const isActivePixel = (digit: number, pixelId: number): boolean => {
     return pixelDigits[digit]?.active.includes(pixelId) ?? false;
 };
 
-const pixelFrame = (digit: number, pixelId: number): number => {
-    const frame = pixelDigits[digit]?.frames.findIndex((pixels) =>
+const pixelFrame = (pixelId: number): number => {
+    const frame = pixelRevealFrames.findIndex((pixels) =>
         pixels.includes(pixelId),
     );
 
     return frame === -1 ? 0 : frame;
+};
+
+const pixelOpacityFrames = (digit: number, pixelId: number): number[] => {
+    const finalOpacity = isActivePixel(digit, pixelId) ? 1 : 0;
+
+    return [0, 1, 0, 1, finalOpacity];
 };
 
 const iconUrl = (slug: string, color: string): string =>
@@ -312,10 +307,10 @@ const shouldReduceMotion = useReducedMotion();
                                             aria-hidden="true"
                                         >
                                             <span
-                                                class="grid grid-cols-5 grid-rows-6"
+                                                class="grid grid-cols-5 grid-rows-7"
                                                 :class="`--number-${index + 1}`"
                                             >
-                                                <span
+                                                <motion.span
                                                     v-for="pixelId in pixelIds"
                                                     :key="pixelId"
                                                     class="pixel-digit__pixel size-(--pixel-size)"
@@ -326,14 +321,30 @@ const shouldReduceMotion = useReducedMotion();
                                                                 pixelId,
                                                             ),
                                                     }"
-                                                    :style="{
-                                                        '--pixel-frame':
-                                                            pixelFrame(
+                                                    :initial="{ opacity: 0 }"
+                                                    :whileInView="{
+                                                        opacity:
+                                                            pixelOpacityFrames(
                                                                 index + 1,
                                                                 pixelId,
                                                             ),
                                                     }"
-                                                ></span>
+                                                    :viewport="{
+                                                        once: false,
+                                                        amount: 0.65,
+                                                    }"
+                                                    :transition="{
+                                                        duration: 0.34,
+                                                        delay:
+                                                            pixelFrame(
+                                                                pixelId,
+                                                            ) * 0.04,
+                                                        times: [
+                                                            0, 0.18, 0.38, 0.62,
+                                                            1,
+                                                        ],
+                                                    }"
+                                                ></motion.span>
                                             </span>
                                         </div>
                                     </div>
@@ -539,12 +550,6 @@ const shouldReduceMotion = useReducedMotion();
 
 .pixel-digit__pixel {
     opacity: 0;
-    transition: 0s;
-    transition-delay: calc(var(--pixel-frame) * 65ms);
     @apply bg-dark-primary dark:bg-primary;
-}
-
-.pixel-digit__pixel.is-active {
-    opacity: 1;
 }
 </style>
