@@ -467,10 +467,15 @@ const shouldReduceMotion = useReducedMotion();
                                     </p>
                                 </div>
                                 <span
-                                    class="shrink-0 [--pixel-digit-color:var(--color-dark-primary)] [--pixel-digit-size:0.375rem] sm:[--pixel-digit-size:0.45rem] dark:[--pixel-digit-color:var(--color-primary)]"
+                                    class="shrink-0 [--pixel-digit-size:0.375rem] sm:[--pixel-digit-size:0.45rem] text-dark-primary dark:text-primary"
                                     aria-hidden="true"
                                 >
-                                    <PixelDigits :value="index + 1" />
+                                    <PixelDigits
+                                        :value="index + 1"
+                                        reanimate
+                                        :reanimate-min-delay="1800"
+                                        :reanimate-max-delay="6000"
+                                    />
                                 </span>
                             </div>
 
