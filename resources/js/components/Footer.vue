@@ -32,7 +32,7 @@ const socialLinks: FooterLink[] = [
             data-name="Layer 2"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 40 29.09"
-            class="absolute bottom-10 left-1/2 h-auto w-full -translate-x-1/2 fill-dark-primary opacity-40 md:blur-3xl sm:blur-2xl blur-xl dark:fill-primary"
+            class="absolute bottom-10 left-1/2 h-auto w-full -translate-x-1/2 fill-dark-primary opacity-40 blur-xl sm:blur-2xl md:blur-3xl dark:fill-primary"
         >
             <polygon
                 class="cls-1"

@@ -24,7 +24,9 @@ import { projects } from '@/data/projects';
                 >
                     <Lines />
                     <div class="lg:w-2/3">
-                        <h1 class="md:text-6xl sm:text-5xl text-4xl text-gray-700 dark:text-white">
+                        <h1
+                            class="text-4xl text-gray-700 sm:text-5xl md:text-6xl dark:text-white"
+                        >
                             I
                             <span
                                 class="text-dark-primary italic dark:text-primary"
