@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
+import Contact from '@/components/Contact.vue';
 import TechStack from '@/components/TechStack.vue';
 import { Button } from '@/components/ui/button';
 import Lines from '@/components/ui/Lines.vue';
@@ -18,11 +19,11 @@ import { projects } from '@/data/projects';
         <section class="bg-gradient-up">
             <div class="container">
                 <div
-                    class="relative border-x border-black/5 py-28 md:py-36 lg:py-50 dark:border-white/5"
+                    class="border-standard relative border-x py-28 md:py-36 lg:py-50"
                 >
                     <Lines />
                     <div class="lg:w-2/3">
-                        <h1 class="text-6xl text-gray-600 dark:text-white">
+                        <h1 class="text-6xl text-gray-700 dark:text-white">
                             I
                             <span
                                 class="text-dark-primary italic dark:text-primary"
@@ -43,10 +44,14 @@ import { projects } from '@/data/projects';
                         </p>
 
                         <div class="mt-6 flex gap-3">
-                            <Button href="/" variant="default">
+                            <Button href="#contact" variant="default">
                                 Contact
                             </Button>
-                            <Button as="a" href="#" variant="outline">
+                            <Button
+                                as="a"
+                                href="https://www.linkedin.com/in/jelle-stekelenburg/"
+                                variant="outline"
+                            >
                                 Let's connect
                             </Button>
                         </div>
@@ -58,10 +63,10 @@ import { projects } from '@/data/projects';
         <section>
             <div class="container">
                 <div
-                    class="relative grid border border-black/5 lg:grid-cols-2 dark:border-white/5"
+                    class="border-standard relative grid border lg:grid-cols-2"
                 >
                     <div
-                        class="absolute top-0 left-1/2 h-full w-px bg-black/5 dark:bg-white/5"
+                        class="border-standard absolute top-0 left-1/2 h-full w-px"
                     ></div>
                     <div class="p-10">
                         <svg
@@ -108,9 +113,7 @@ import { projects } from '@/data/projects';
                             understanding.
                         </p>
                     </div>
-                    <div
-                        class="border-t border-black/5 p-10 dark:border-white/5"
-                    >
+                    <div class="border-standard border-t p-10">
                         <svg
                             class="size-16 fill-dark-primary dark:fill-primary"
                             xmlns="http://www.w3.org/2000/svg"
@@ -132,9 +135,7 @@ import { projects } from '@/data/projects';
                             design balances clarity, function and aesthetics.
                         </p>
                     </div>
-                    <div
-                        class="relative border-t border-black/5 p-10 dark:border-white/5"
-                    >
+                    <div class="border-standard relative border-t p-10">
                         <svg
                             class="size-16 fill-dark-primary dark:fill-primary"
                             xmlns="http://www.w3.org/2000/svg"
@@ -163,9 +164,9 @@ import { projects } from '@/data/projects';
 
         <section>
             <div class="container">
-                <div class="grid border border-black/5 dark:border-white/5">
+                <div class="border-standard grid border">
                     <div
-                        class="relative overflow-hidden border-b border-black/5 px-10 py-30 text-center dark:border-white/5"
+                        class="border-standard relative overflow-hidden border-b px-10 py-30 text-center"
                     >
                         <div
                             class="absolute bottom-0 left-0 z-0 size-100 -translate-x-1/3 translate-y-1/2 bg-radial from-dark-primary/80 to-transparent to-50% blur-2xl dark:from-primary/80"
@@ -197,7 +198,7 @@ import { projects } from '@/data/projects';
                     </div>
 
                     <div
-                        class="group grid gap-x-10 gap-y-6 border-b border-black/5 p-10 last:border-b-0 lg:grid-cols-2 dark:border-white/5"
+                        class="border-standard group grid gap-x-10 gap-y-6 border-b p-10 last:border-b-0 lg:grid-cols-2"
                         v-for="project in projects"
                         :key="project.title"
                     >
@@ -215,7 +216,7 @@ import { projects } from '@/data/projects';
                                     :variant="'default'"
                                     :href="project.href"
                                 >
-                                    Read more
+                                    Visit
                                 </Button>
                                 <Button
                                     :variant="'outline'"
@@ -236,5 +237,7 @@ import { projects } from '@/data/projects';
         </section>
 
         <TechStack />
+
+        <Contact />
     </div>
 </template>

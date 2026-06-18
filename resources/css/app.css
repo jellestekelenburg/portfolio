@@ -61,3 +61,7 @@ html {
     opacity: 0.03;
     z-index: 999999;
 }
+
+.border-standard {
+    @apply border-black/5 dark:border-white/5;
+}

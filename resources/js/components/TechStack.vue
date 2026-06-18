@@ -1,20 +1,28 @@
 <script setup lang="ts">
 import {
+    Cloud,
     CreditCard,
     DatabaseZap,
+    Gauge,
     Image,
     Layers3,
     LayoutTemplate,
+    MousePointerClick,
     Palette,
     PenTool,
+    PlugZap,
     SearchCheck,
     ShieldCheck,
     ShoppingBag,
     TableProperties,
+    Terminal,
+    UserRound,
+    Workflow,
 } from 'lucide-vue-next';
 import { motion, useReducedMotion } from 'motion-v';
 import type { Component } from 'vue';
 import Lines from '@/components/ui/Lines.vue';
+import PixelDigits from '@/components/ui/PixelDigits.vue';
 
 type Technology = {
     name: string;
@@ -22,67 +30,14 @@ type Technology = {
     color?: string;
     conceptIcon?: Component;
     iconAlt?: string;
+    path?: string;
 };
 
 type TechnologyCategory = {
     title: string;
     eyebrow: string;
+    description: string;
     technologies: Technology[];
-};
-
-type PixelDigit = {
-    active: number[];
-};
-
-const pixelDigits: Record<number, PixelDigit> = {
-    1: {
-        active: [3, 7, 8, 13, 18, 23, 28, 32, 33, 34],
-    },
-    2: {
-        active: [2, 3, 4, 6, 10, 15, 19, 23, 27, 31, 32, 33, 34, 35],
-    },
-    3: {
-        active: [2, 3, 4, 6, 10, 15, 18, 19, 25, 26, 30, 32, 33, 34],
-    },
-    4: {
-        active: [1, 5, 6, 10, 11, 15, 16, 17, 18, 19, 20, 25, 30, 35],
-    },
-    5: {
-        active: [
-            1, 2, 3, 4, 5, 6, 11, 16, 17, 18, 19, 20, 25, 30, 31, 32, 33, 34,
-        ],
-    },
-    6: {
-        active: [2, 3, 4, 6, 11, 16, 17, 18, 19, 21, 25, 26, 30, 32, 33, 34],
-    },
-};
-
-const pixelRevealFrames = [
-    [18, 3, 31, 10, 24, 7, 35],
-    [20, 2, 29, 15, 33, 12, 26],
-    [5, 22, 1, 19, 34, 9, 16],
-    [27, 4, 25, 11, 30, 14, 21],
-    [32, 6, 8, 23, 13, 28, 17],
-];
-
-const pixelStartOff = [4, 9, 13, 17, 22, 26, 31, 35];
-
-const pixelIds = Array.from({ length: 35 }, (_, index) => index + 1);
-
-const isActivePixel = (digit: number, pixelId: number): boolean => {
-    return pixelDigits[digit]?.active.includes(pixelId) ?? false;
-};
-
-const pixelFrame = (pixelId: number): number => {
-    const frame = pixelRevealFrames.findIndex((pixels) =>
-        pixels.includes(pixelId),
-    );
-
-    return frame === -1 ? 0 : frame;
-};
-
-const isStartPixel = (pixelId: number): boolean => {
-    return !pixelStartOff.includes(pixelId);
 };
 
 const iconUrl = (slug: string, color: string): string =>
@@ -91,7 +46,9 @@ const iconUrl = (slug: string, color: string): string =>
 const technologyCategories: TechnologyCategory[] = [
     {
         title: 'Frontend',
-        eyebrow: 'Interface engineering',
+        eyebrow: 'Interfaces & interaction',
+        description:
+            'Building fast, responsive interfaces with a focus on user experience, maintainability and performance.',
         technologies: [
             { name: 'HTML5', brandIcon: 'html5', color: 'E34F26' },
             { name: 'CSS3', brandIcon: 'css', color: '1572B6' },
@@ -100,11 +57,14 @@ const technologyCategories: TechnologyCategory[] = [
             { name: 'React', brandIcon: 'react', color: '61DAFB' },
             { name: 'Inertia.js', brandIcon: 'inertia', color: '9553E9' },
             { name: 'Tailwind CSS', brandIcon: 'tailwindcss', color: '06B6D4' },
+            { name: 'Responsive UI', conceptIcon: LayoutTemplate },
         ],
     },
     {
         title: 'Backend',
-        eyebrow: 'Application architecture',
+        eyebrow: 'Laravel applications',
+        description:
+            'Developing custom applications with clear structure, secure authentication and scalable backend logic.',
         technologies: [
             { name: 'PHP', brandIcon: 'php', color: '777BB4' },
             { name: 'Laravel', brandIcon: 'laravel', color: 'FF2D20' },
@@ -115,46 +75,82 @@ const technologyCategories: TechnologyCategory[] = [
                 iconAlt: 'OpenAPI logo',
             },
             { name: 'Authentication', conceptIcon: ShieldCheck },
+            { name: 'Authorization', conceptIcon: ShieldCheck },
             { name: 'Eloquent ORM', conceptIcon: DatabaseZap },
             { name: 'MVC', conceptIcon: Layers3 },
-            { name: 'Payment Integrations', conceptIcon: CreditCard },
+            { name: 'Queues & Jobs', conceptIcon: Workflow },
         ],
     },
     {
-        title: 'Database',
-        eyebrow: 'Data modelling',
+        title: 'E-commerce',
+        eyebrow: 'Webshops & order flows',
+        description:
+            'Experience with complete e-commerce platforms, payment flows, customer accounts, discount logic and external integrations.',
+        technologies: [
+            { name: 'Payment Integrations', conceptIcon: CreditCard },
+            { name: 'Order Management', conceptIcon: ShoppingBag },
+            { name: 'Customer Accounts', conceptIcon: UserRound },
+            { name: 'Custom APIs', conceptIcon: PlugZap },
+            { name: 'Google Merchant Center', conceptIcon: ShoppingBag },
+        ],
+    },
+    {
+        title: 'Database & Cloud',
+        eyebrow: 'Data, storage & structure',
+        description:
+            'Designing database structures, query logic and cloud storage solutions for scalable applications.',
         technologies: [
             { name: 'MySQL', brandIcon: 'mysql', color: '4479A1' },
             { name: 'SQL', conceptIcon: TableProperties },
             { name: 'Database Design', conceptIcon: DatabaseZap },
+            { name: 'Query Optimization', conceptIcon: Gauge },
+            {
+                name: 'AWS S3',
+                path: 'M180.4 267C179.7 289.6 191 299.7 191.3 306C191.2 307.3 190.7 308.5 190 309.6C189.3 310.7 188.3 311.6 187.2 312.2L174.4 321.2C172.7 322.4 170.8 323 168.8 323.1C168.4 323.1 160.6 324.9 148.3 297.5C140.8 306.9 131.3 314.4 120.4 319.5C109.5 324.6 97.7 327.2 85.7 327C69.4 327.9 25.3 317.8 27.6 270.8C26 232.5 61.7 208.7 98.5 210.8C105.6 210.8 120.1 211.2 145.5 217.1L145.5 201.5C148.2 175 130.8 154.5 100.7 157.6C98.3 157.6 81.3 157.1 54.9 167.7C47.5 171.1 46.6 170.5 44.1 170.5C36.7 170.5 39.7 149 41.2 146.3C46.4 139.9 77.1 127.9 107.1 128.1C127.2 126.3 147.2 132.5 162.8 145.4C169.1 152.5 174 160.8 177 169.8C180 178.8 181.2 188.3 180.5 197.8L180.5 267.1zM94 299.4C126.4 298.9 140.2 279.4 143.3 268.9C145.8 258.8 145.4 252.5 145.4 241.5C135.7 239.2 121.8 236.6 105.8 236.6C90.6 235.5 63 242.2 64.1 268.9C62.9 285.7 75.2 300.3 94.1 299.4zM264.9 322.5C257 323.2 253.4 317.6 252.2 312.1L202.4 147.4C201.4 144.6 200.8 141.8 200.5 138.8C200.3 137.6 200.6 136.4 201.3 135.4C202 134.4 203.1 133.8 204.3 133.6C204.5 133.6 202.2 133.6 226.5 133.6C235.3 132.7 238.1 139.6 239.1 144L274.9 284.8L308.1 144C308.6 140.8 311 132.9 320.9 133.8L338.1 133.8C340.3 133.6 349.2 133.3 350.8 144.2L384.1 286.7L421 144.1C421.5 141.9 423.7 132.7 433.7 133.7L453.4 133.7C454.3 133.6 459.6 132.9 458.7 142.3C458.3 144.1 462.1 131.6 405.9 312.2C404.8 317.7 401.1 323.3 393.2 322.6L374.5 322.6C363.6 323.8 362 312.9 361.8 311.9L328.6 174.8L295.8 311.8C295.6 312.9 294.1 323.7 283.1 322.5L264.8 322.5L264.8 322.5zM538.4 328.1C532.5 328.1 504.5 327.8 481 315.8C478.7 314.8 476.7 313.2 475.3 311C473.9 308.8 473.2 306.4 473.2 303.9L473.2 293.2C473.2 284.7 479.4 286.3 482 287.3C492 291.4 498.5 294.4 510.8 296.9C547.5 304.4 563.6 294.6 567.5 292.4C580.7 284.6 581.7 266.7 572.8 257.5C562.3 248.7 557.3 248.4 519.7 236.5C515.1 235.2 476 222.9 475.9 184.1C475.3 155.9 500.9 127.9 545.4 128.1C558.1 128.1 591.8 132.2 601 143.7C602.4 145.8 603 148.3 602.9 150.7L602.9 160.8C602.9 165.2 601.3 167.5 598 167.5C590.3 166.6 576.6 156.3 548.8 156.7C541.9 156.3 508.9 157.6 510.4 181.7C510 200.7 537 207.8 540.1 208.6C576.6 219.6 588.7 221.4 603.2 238.2C620.3 260.4 611.1 286.5 607.5 293.6C588.4 331.1 539.1 328 538.2 328zM578.6 433C508.6 484.7 406.9 512.2 320.1 512.2C203 513 89.8 469.9 2.8 391.5C-3.7 385.6 2 377.5 10 382C106.5 437.2 215.7 466.2 326.9 466.1C409.9 465.7 492 448.8 568.5 416.6C580.3 411.6 590.3 424.4 578.6 433zM607.8 399.7C598.8 388.2 548.5 394.3 526 397C519.2 397.8 518.1 391.9 524.2 387.5C564.3 359.3 630.1 367.4 637.6 376.9C645.1 386.4 635.5 452.3 598 483.8C592.2 488.7 586.7 486.1 589.3 479.7C597.7 458.4 616.7 411.2 607.7 399.7z',
+                color: '#FF9900',
+            },
+            { name: 'Object Storage', conceptIcon: Cloud },
         ],
     },
     {
         title: 'Tooling',
-        eyebrow: 'Build workflow',
+        eyebrow: 'Development workflow',
+        description:
+            'Daily tooling for development, debugging, deployment preparation and local development environments.',
         technologies: [
             { name: 'Git', brandIcon: 'git', color: 'F05032' },
+            { name: 'GitHub', brandIcon: 'github', color: '9BCF17' },
+            { name: 'GitLab', brandIcon: 'gitlab', color: 'FC6D26' },
             { name: 'Vite', brandIcon: 'vite', color: '646CFF' },
             { name: 'NPM', brandIcon: 'npm', color: 'CB3837' },
             { name: 'Composer', brandIcon: 'composer', color: '885630' },
+            { name: 'Postman', brandIcon: 'postman', color: 'FF6C37' },
+            { name: 'TablePlus', conceptIcon: TableProperties },
+            { name: 'Laravel Valet', conceptIcon: Terminal },
         ],
     },
     {
-        title: 'Design & Creative',
-        eyebrow: 'Visual problem solving',
+        title: 'Design & UX',
+        eyebrow: 'Design-to-code',
+        description:
+            'Translating designs into polished interfaces with attention to visual detail, usability and content presentation.',
         technologies: [
+            { name: 'Figma', brandIcon: 'figma', color: 'F24E1E' },
             { name: 'Adobe Photoshop', conceptIcon: Image },
             { name: 'Adobe Illustrator', conceptIcon: PenTool },
-            { name: 'Figma', brandIcon: 'figma', color: 'F24E1E' },
-            { name: 'UI Design', conceptIcon: LayoutTemplate },
-            { name: 'Image Editing', conceptIcon: Palette },
+            { name: 'Affinity', conceptIcon: Palette },
+            { name: 'UI Implementation', conceptIcon: LayoutTemplate },
+            { name: 'Image Editing', conceptIcon: Image },
         ],
     },
     {
-        title: 'Growth & SEO',
-        eyebrow: 'Visibility and insights',
+        title: 'Performance & SEO',
+        eyebrow: 'Speed & visibility',
+        description:
+            'Optimizing websites for speed, technical visibility, measurable performance and conversion-focused user experiences.',
         technologies: [
-            { name: 'SEO', conceptIcon: SearchCheck },
+            { name: 'Performance Optimization', conceptIcon: Gauge },
+            { name: 'Technical SEO', conceptIcon: SearchCheck },
             {
                 name: 'Google Search Console',
                 brandIcon: 'googlesearchconsole',
@@ -165,11 +161,7 @@ const technologyCategories: TechnologyCategory[] = [
                 brandIcon: 'googleanalytics',
                 color: 'E37400',
             },
-            {
-                name: 'Google Merchant Center',
-                conceptIcon: ShoppingBag,
-                iconAlt: 'Merchant Center icon',
-            },
+            { name: 'Conversion Optimization', conceptIcon: MousePointerClick },
         ],
     },
 ];
@@ -222,9 +214,10 @@ const shouldReduceMotion = useReducedMotion();
                                 <p
                                     class="mt-5 max-w-sm text-gray-600 dark:text-gray-400"
                                 >
-                                    A practical mix of technologies, frameworks
-                                    and creative tools I use to build, improve
-                                    and maintain modern web applications.
+                                    The practical stack I use to build complete
+                                    web applications, from polished interfaces
+                                    to backend logic, integrations and cloud
+                                    storage.
                                 </p>
                             </header>
 
@@ -300,51 +293,17 @@ const shouldReduceMotion = useReducedMotion();
                                             >
                                                 {{ category.title }}
                                             </h3>
+                                            <p
+                                                class="mt-4 max-w-md text-base leading-relaxed text-gray-600 dark:text-gray-400"
+                                            >
+                                                {{ category.description }}
+                                            </p>
                                         </div>
                                         <div
-                                            class="flex flex-col items-end gap-5"
+                                            class="flex flex-col items-end gap-5 text-dark-primary dark:text-primary"
                                             aria-hidden="true"
                                         >
-                                            <span class="pixel-digit">
-                                                <motion.span
-                                                    v-for="pixelId in pixelIds"
-                                                    :key="pixelId"
-                                                    class="pixel-digit__pixel"
-                                                    :class="{
-                                                        'is-active':
-                                                            isActivePixel(
-                                                                index + 1,
-                                                                pixelId,
-                                                            ),
-                                                    }"
-                                                    :initial="{
-                                                        opacity: isStartPixel(
-                                                            pixelId,
-                                                        )
-                                                            ? 1
-                                                            : 0,
-                                                    }"
-                                                    :whileInView="{
-                                                        opacity: isActivePixel(
-                                                            index + 1,
-                                                            pixelId,
-                                                        )
-                                                            ? 1
-                                                            : 0,
-                                                    }"
-                                                    :viewport="{
-                                                        once: false,
-                                                        amount: 0.65,
-                                                    }"
-                                                    :transition="{
-                                                        duration: 0,
-                                                        delay:
-                                                            pixelFrame(
-                                                                pixelId,
-                                                            ) * 0.1,
-                                                    }"
-                                                ></motion.span>
-                                            </span>
+                                            <PixelDigits :value="index + 1" />
                                         </div>
                                     </div>
 
@@ -396,7 +355,9 @@ const shouldReduceMotion = useReducedMotion();
                                                 />
                                                 <component
                                                     :is="technology.conceptIcon"
-                                                    v-else
+                                                    v-if="
+                                                        technology.conceptIcon
+                                                    "
                                                     class="size-5 text-dark-primary dark:text-primary"
                                                     stroke-width="1.75"
                                                     :aria-label="
@@ -405,6 +366,17 @@ const shouldReduceMotion = useReducedMotion();
                                                     "
                                                     role="img"
                                                 />
+                                                <svg
+                                                    v-if="technology.path"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 640 640"
+                                                    class="size-7"
+                                                    :style="`fill: ${technology.color}`"
+                                                >
+                                                    <path
+                                                        :d="technology.path"
+                                                    />
+                                                </svg>
                                             </span>
                                             <span
                                                 class="min-w-0 font-grotesk text-base leading-snug font-semibold text-wrap text-gray-800 dark:text-gray-200"
@@ -442,9 +414,9 @@ const shouldReduceMotion = useReducedMotion();
                         <p
                             class="relative mx-auto mt-4 max-w-2xl text-base text-gray-600 md:text-lg dark:text-gray-400"
                         >
-                            A practical mix of technologies, frameworks and
-                            creative tools I use to build, improve and maintain
-                            modern web applications.
+                            The practical stack I use to build complete web
+                            applications, from polished interfaces to backend
+                            logic, integrations and cloud storage.
                         </p>
                     </header>
 
@@ -483,12 +455,17 @@ const shouldReduceMotion = useReducedMotion();
                                     >
                                         {{ category.title }}
                                     </h3>
+                                    <p
+                                        class="mt-3 max-w-xl text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+                                    >
+                                        {{ category.description }}
+                                    </p>
                                 </div>
                                 <span
-                                    class="font-grotesk text-sm font-semibold text-gray-300 dark:text-gray-700"
+                                    class="shrink-0 [--pixel-digit-color:var(--color-dark-primary)] [--pixel-digit-size:0.375rem] sm:[--pixel-digit-size:0.45rem] dark:[--pixel-digit-color:var(--color-primary)]"
                                     aria-hidden="true"
                                 >
-                                    0{{ index + 1 }}
+                                    <PixelDigits :value="index + 1" />
                                 </span>
                             </div>
 
@@ -519,7 +496,7 @@ const shouldReduceMotion = useReducedMotion();
                                         />
                                         <component
                                             :is="technology.conceptIcon"
-                                            v-else
+                                            v-if="technology.conceptIcon"
                                             class="size-5 text-dark-primary dark:text-primary"
                                             stroke-width="1.75"
                                             :aria-label="
@@ -528,6 +505,15 @@ const shouldReduceMotion = useReducedMotion();
                                             "
                                             role="img"
                                         />
+                                        <svg
+                                            v-if="technology.path"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 640 640"
+                                            class="size-7"
+                                            :style="`fill: ${technology.color}`"
+                                        >
+                                            <path :d="technology.path" />
+                                        </svg>
                                     </span>
                                     <span
                                         class="min-w-0 font-grotesk text-base leading-snug font-semibold text-wrap text-gray-800 dark:text-gray-200"
@@ -543,24 +529,3 @@ const shouldReduceMotion = useReducedMotion();
         </div>
     </section>
 </template>
-
-<style scoped>
-@reference '#app.css';
-
-.pixel-digit {
-    --pixel-digit-size: 0.5rem;
-    display: grid;
-    grid-template-columns: repeat(5, var(--pixel-digit-size));
-    grid-template-rows: repeat(7, var(--pixel-digit-size));
-    gap: 0;
-    line-height: 0;
-}
-
-.pixel-digit__pixel {
-    display: block;
-    width: var(--pixel-digit-size);
-    height: var(--pixel-digit-size);
-    opacity: 0;
-    @apply bg-dark-primary dark:bg-primary;
-}
-</style>
