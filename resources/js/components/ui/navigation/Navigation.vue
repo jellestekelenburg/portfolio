@@ -2,7 +2,7 @@
 import { ThemeSwitcher } from '@/components/ui/themeswitcher';
 import { Menu } from '@/components/ui/menu';
 import { useTheme } from '@/composables/useTheme';
-import { ref, watch } from 'vue';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 
 const { selectedTheme, resolvedTheme } = useTheme();
 const dark = ref(true)
@@ -15,34 +15,31 @@ watch(
     { immediate: true },
 );
 
-//if scroll higher than 100px, add shadow to nav
-
-let classList = [
-    'dark:bg-gray-900/90',
-    'bg-white/90',
-    'backdrop-blur-xs',
-];
 const handleScroll = () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 1) {
-        nav?.classList.add(...classList);
-        active.value = true;
-    }
-    else {
-        nav?.classList.remove(...classList);
-        active.value = false;
-    }
+    active.value = window.scrollY > 1;
 }
 
-window.addEventListener('scroll', handleScroll);
+onMounted(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+});
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
-    <nav class="fixed w-full z-50 top-0 left-0 transition">
-        <div class="container">
+    <nav class="lg:fixed absolute top-0 left-0 z-50 isolate w-full transition-all">
+        <div
+            aria-hidden="true"
+            class="pointer-events-none absolute inset-x-0 top-0 z-0 h-32 backdrop-blur-xl [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_30%,transparent_100%)] [mask-image:linear-gradient(to_bottom,black_0%,black_30%,transparent_100%)]"
+        ></div>
+
+        <div class="container relative z-10">
             <div :class="!active ? 'border-b border-black/5 dark:border-white/5' : ''" class="py-4 flex items-center justify-between">
                 <img :src="dark ? '/img/branding/logo+t-d.svg' : '/img/branding/logo+t.svg'" class="w-50" alt="">
-                <div class="flex gap-x-8 items-center">
+                <div class="gap-x-8 items-center lg:flex hidden">
                     <Menu/>
                     <ThemeSwitcher />
                 </div>

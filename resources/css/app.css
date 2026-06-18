@@ -3,38 +3,69 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @theme {
-    --heading: "Playfair Display", serif;
-    --font-sans: "DM Sans", sans-serif;
-    /*--color-primary: #E3f272;*/
-    /*--color-gray-900: #26150b;*/
-    --color-primary: #c6ff33;
-    --color-dark-primary: #72b01D;
-    --color-gray-900: #151515;
-    --color-gray-50: #f3eff5;
-    --bg-gradient-up-dark: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%, rgb(21, 67, 4) 69.27%, #c6ff33 100%);
-    --bg-gradient-up: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%, rgb(214, 255, 200) 69.27%, #a3ff33 100%);
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'DM Sans', sans-serif;
+    --font-grotesk: 'Space Grotesk', sans-serif;
+    --color-primary: hsl(76.76, 100%, 60%);
+    --color-dark-primary: hsl(76.76, 80%, 45%);
+    --color-gray-900: hsl(0, 0%, 8.24%);
+    --color-gray-50: hsl(285, 18.18%, 95.69%);
+    --pixel-size: 0.45rem;
+    --bg-gradient-up-dark: radial-gradient(
+        131.66% 109.77% at 50% 97.75%,
+        transparent 37.41%,
+        rgb(21, 67, 4) 69.27%,
+        #c6ff33 100%
+    );
+    --bg-gradient-up: radial-gradient(
+        131.66% 109.77% at 50% 97.75%,
+        transparent 37.41%,
+        rgb(214, 255, 200) 69.27%,
+        #a3ff33 100%
+    );
+}
+
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-serif), serif;
+    }
 }
 
 .container {
-    @apply max-w-6xl mx-auto lg:px-8 px-6;
+    @apply mx-auto max-w-6xl px-6 lg:px-8;
 }
 
-
-h1,h2,h3,h4,h5,h6 {
-    font-family: var(--heading);
+body,
+html {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
-.btn {
-    @apply inline-block rounded-full px-4 py-2 transition;
-}
-.btn-p {
-    @apply bg-white text-gray-800 hover:bg-gray-100 border-1 border-gray-800;
-}
-.btn-s {
-    @apply bg-transparent text-white/60 border-1 border-white/60 hover:border-white hover:text-white italic;
-    font-family: var(--heading);
+html {
+    scroll-behavior: smooth;
 }
 
-h2 {
-    @apply text-3xl;
+.grain-overlay {
+    background-image: url('/img/grain.gif');
+    background-size: 500px;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    z-index: 999999;
+}
+
+.border-standard {
+    @apply border-black/5 dark:border-white/5;
 }

@@ -1,7 +1,6 @@
 .bg-gradient-up {
     background-image: var(--bg-gradient-up);
-    &:where([data-theme=dark], [data-theme=dark] *) {
+    &:where([data-theme='dark'], [data-theme='dark'] *) {
         background-image: var(--bg-gradient-up-dark);
     }
 }
-
