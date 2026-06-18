@@ -303,7 +303,12 @@ const shouldReduceMotion = useReducedMotion();
                                             class="flex flex-col items-end gap-5 text-dark-primary dark:text-primary"
                                             aria-hidden="true"
                                         >
-                                            <PixelDigits :value="index + 1" />
+                                            <PixelDigits
+                                                :value="index + 1"
+                                                reanimate
+                                                :reanimate-min-delay="1800"
+                                                :reanimate-max-delay="6000"
+                                            />
                                         </div>
                                     </div>
 

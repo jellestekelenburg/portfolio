@@ -8,10 +8,7 @@ const emailHref = `mailto:${emailAddress}`;
 </script>
 
 <template>
-    <section
-        id="contact"
-        class="relative scroll-mt-24 bg-gray-50 dark:bg-gray-900"
-    >
+    <section id="contact" class="relative z-1 scroll-mt-24">
         <div class="container">
             <div
                 class="border-standard relative overflow-hidden border-x py-16 md:py-20 lg:py-24"
@@ -28,10 +25,10 @@ const emailHref = `mailto:${emailAddress}`;
                         <h2
                             class="mt-4 text-4xl text-gray-800 md:text-5xl dark:text-gray-100"
                         >
-                            Let's build
+                            Let's
                             <span
                                 class="text-dark-primary italic dark:text-primary"
-                                >something</span
+                                >build</span
                             >
                             together.
                         </h2>
@@ -80,7 +77,7 @@ const emailHref = `mailto:${emailAddress}`;
                             <!--                                </span>-->
                             <!--                            </span>-->
                             <span
-                                class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"
+                                class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 hover:italic sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"
                             >
                                 {{ phoneNumber }}
                             </span>
@@ -96,7 +93,7 @@ const emailHref = `mailto:${emailAddress}`;
                                 Email
                             </span>
                             <span
-                                class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"
+                                class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 hover:italic sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"
                             >
                                 {{ emailAddress }}
                             </span>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { motion, useReducedMotion } from 'motion-v';
-import { computed } from 'vue';
+import { computed, onMounted, onUnmounted, reactive, watch } from 'vue';
 
 type PixelDigit = {
     active: number[];
@@ -18,12 +18,18 @@ const props = withDefaults(
         value: number | string;
         animate?: boolean;
         copyText?: string;
+        reanimate?: boolean;
+        reanimateMaxDelay?: number;
+        reanimateMinDelay?: number;
         selectable?: boolean;
         viewportAmount?: number;
     }>(),
     {
         animate: true,
         copyText: undefined,
+        reanimate: false,
+        reanimateMaxDelay: 7000,
+        reanimateMinDelay: 2500,
         selectable: false,
         viewportAmount: 0.65,
     },
@@ -77,6 +83,8 @@ const pixelRevealFrames = [
 const pixelStartOff = [4, 9, 13, 17, 22, 26, 31, 35];
 const pixelIds = Array.from({ length: 35 }, (_, index) => index + 1);
 const shouldReduceMotion = useReducedMotion();
+const reanimationCycles = reactive<Record<string, number>>({});
+const reanimationTimers = new Map<string, number>();
 
 const characters = computed<PixelCharacter[]>(() =>
     String(props.value)
@@ -109,6 +117,69 @@ const pixelFrame = (pixelId: number): number => {
 const isStartPixel = (pixelId: number): boolean => {
     return !pixelStartOff.includes(pixelId);
 };
+
+const reanimationDelay = (): number => {
+    const minDelay = Math.max(0, props.reanimateMinDelay);
+    const maxDelay = Math.max(minDelay, props.reanimateMaxDelay);
+
+    return Math.round(minDelay + Math.random() * (maxDelay - minDelay));
+};
+
+const clearReanimationTimers = (): void => {
+    reanimationTimers.forEach((timer) => {
+        window.clearTimeout(timer);
+    });
+
+    reanimationTimers.clear();
+};
+
+const scheduleDigitReanimation = (characterId: string): void => {
+    const timer = window.setTimeout(() => {
+        reanimationCycles[characterId] =
+            (reanimationCycles[characterId] ?? 0) + 1;
+        scheduleDigitReanimation(characterId);
+    }, reanimationDelay());
+
+    reanimationTimers.set(characterId, timer);
+};
+
+const syncReanimationTimers = (): void => {
+    clearReanimationTimers();
+
+    if (!props.animate || !props.reanimate || shouldReduceMotion.value) {
+        return;
+    }
+
+    characters.value
+        .filter((pixelCharacter) => pixelCharacter.isDigit)
+        .forEach((pixelCharacter) => {
+            scheduleDigitReanimation(pixelCharacter.id);
+        });
+};
+
+const pixelAnimationKey = (
+    pixelCharacter: PixelCharacter,
+    pixelId: number,
+): string => {
+    return `${pixelCharacter.id}-${pixelId}-${reanimationCycles[pixelCharacter.id] ?? 0}`;
+};
+
+onMounted(syncReanimationTimers);
+
+watch(
+    [
+        characters,
+        shouldReduceMotion,
+        () => props.animate,
+        () => props.reanimate,
+        () => props.reanimateMaxDelay,
+        () => props.reanimateMinDelay,
+    ],
+    syncReanimationTimers,
+    { flush: 'post' },
+);
+
+onUnmounted(clearReanimationTimers);
 </script>
 
 <template>
@@ -124,7 +195,7 @@ const isStartPixel = (pixelId: number): boolean => {
                 <span v-if="pixelCharacter.isDigit" class="pixel-digits__digit">
                     <motion.span
                         v-for="pixelId in pixelIds"
-                        :key="pixelId"
+                        :key="pixelAnimationKey(pixelCharacter, pixelId)"
                         class="pixel-digits__pixel"
                         :class="{
                             'is-active': isActivePixel(
