@@ -46,6 +46,10 @@ html {
     scrollbar-width: none; /* Firefox */
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .grain-overlay {
     background-image: url('/img/grain.gif');
     background-size: 500px;

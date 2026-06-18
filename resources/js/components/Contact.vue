@@ -1,20 +1,17 @@
 <script setup lang="ts">
 import Lines from '@/components/ui/Lines.vue';
-import PixelDigits from '@/components/ui/PixelDigits.vue';
 
-const phoneNumber = '06 2442 1363';
+const phoneNumber = '+31 6 2442 1363';
 const phoneHref = `tel:${phoneNumber.replace(/\s/g, '')}`;
 const emailAddress = 'jellemaarten02@gmail.com';
 const emailHref = `mailto:${emailAddress}`;
 </script>
 
 <template>
-    <section id="contact" class="relative bg-gray-50 dark:bg-gray-900">
-        <img
-            src="/img/cta-vortex.webp"
-            class="absolute bottom-0 left-1/2 h-auto w-full -translate-x-1/2 opacity-75 blur-xl"
-            alt=""
-        />
+    <section
+        id="contact"
+        class="relative scroll-mt-24 bg-gray-50 dark:bg-gray-900"
+    >
         <div class="container">
             <div
                 class="border-standard relative overflow-hidden border-x py-16 md:py-20 lg:py-24"
@@ -59,28 +56,33 @@ const emailHref = `mailto:${emailAddress}`;
                             >
                                 Phone
                             </span>
-                            <span class="relative hidden lg:block">
-                                <span
-                                    class="absolute bottom-0 -left-2 -translate-x-full font-mono leading-1 dark:text-gray-400"
-                                    >(+31)</span
-                                >
-                                <PixelDigits
-                                    :value="phoneNumber"
-                                    :copy-text="phoneNumber"
-                                    selectable
-                                    class="max-w-full [--pixel-copy-font-size:clamp(1.5rem,5vw,3rem)] [--pixel-digit-gap:clamp(0.14rem,0.45vw,0.28rem)] [--pixel-digit-size:clamp(0.16rem,0.5vw,0.28rem)] [--pixel-space-width:clamp(0.28rem,0.9vw,0.65rem)]"
-                                />
-                            </span>
-                            <span class="block lg:hidden">
-                                <span
-                                    class="font-mono leading-1 dark:text-gray-400"
-                                    >(+31)</span
-                                >
-                                <span
-                                    class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"
-                                >
-                                    {{ phoneNumber }}
-                                </span>
+                            <!--                            <span class="relative hidden lg:block">-->
+                            <!--                                <span-->
+                            <!--                                    class="absolute bottom-0 -left-2 -translate-x-full font-mono leading-1 dark:text-gray-400"-->
+                            <!--                                    >(+31)</span-->
+                            <!--                                >-->
+                            <!--                                <PixelDigits-->
+                            <!--                                    :value="phoneNumber"-->
+                            <!--                                    :copy-text="phoneNumber"-->
+                            <!--                                    selectable-->
+                            <!--                                    class="max-w-full [&#45;&#45;pixel-copy-font-size:clamp(1.5rem,5vw,3rem)] [&#45;&#45;pixel-digit-gap:clamp(0.14rem,0.45vw,0.28rem)] [&#45;&#45;pixel-digit-size:clamp(0.16rem,0.5vw,0.28rem)] [&#45;&#45;pixel-space-width:clamp(0.28rem,0.9vw,0.65rem)]"-->
+                            <!--                                />-->
+                            <!--                            </span>-->
+                            <!--                            <span class="block lg:hidden">-->
+                            <!--                                <span-->
+                            <!--                                    class="font-mono leading-1 dark:text-gray-400"-->
+                            <!--                                    >(+31)</span-->
+                            <!--                                >-->
+                            <!--                                <span-->
+                            <!--                                    class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"-->
+                            <!--                                >-->
+                            <!--                                    {{ phoneNumber }}-->
+                            <!--                                </span>-->
+                            <!--                            </span>-->
+                            <span
+                                class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"
+                            >
+                                {{ phoneNumber }}
                             </span>
                         </a>
 

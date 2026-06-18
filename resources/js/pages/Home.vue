@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import Contact from '@/components/Contact.vue';
+import Footer from '@/components/Footer.vue';
 import TechStack from '@/components/TechStack.vue';
 import { Button } from '@/components/ui/button';
 import Lines from '@/components/ui/Lines.vue';
@@ -16,14 +17,14 @@ import { projects } from '@/data/projects';
     <div class="grain-overlay"></div>
 
     <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-        <section class="bg-gradient-up">
+        <section id="home" class="bg-gradient-up scroll-mt-24">
             <div class="container">
                 <div
                     class="border-standard relative border-x py-28 md:py-36 lg:py-50"
                 >
                     <Lines />
                     <div class="lg:w-2/3">
-                        <h1 class="text-6xl text-gray-700 dark:text-white">
+                        <h1 class="md:text-6xl sm:text-5xl text-4xl text-gray-700 dark:text-white">
                             I
                             <span
                                 class="text-dark-primary italic dark:text-primary"
@@ -162,7 +163,7 @@ import { projects } from '@/data/projects';
             </div>
         </section>
 
-        <section>
+        <section id="projects" class="scroll-mt-24">
             <div class="container">
                 <div class="border-standard grid border">
                     <div
@@ -239,5 +240,7 @@ import { projects } from '@/data/projects';
         <TechStack />
 
         <Contact />
+
+        <Footer />
     </div>
 </template>

@@ -172,7 +172,7 @@ const shouldReduceMotion = useReducedMotion();
 <template>
     <section
         id="technologies"
-        class="relative bg-gray-50 dark:bg-gray-900"
+        class="relative scroll-mt-24 bg-gray-50 dark:bg-gray-900"
         aria-label="Capabilities & Tools"
     >
         <div
