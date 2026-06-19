@@ -45,6 +45,7 @@ const emailHref = `mailto:${emailAddress}`;
                     <div class="grid">
                         <a
                             :href="phoneHref"
+                            data-cursor-variant="link"
                             class="border-standard group grid min-w-0 gap-4 border-b px-8 py-7 text-dark-primary transition hover:text-gray-900 focus-visible:outline focus-visible:-outline-offset-2 focus-visible:outline-dark-primary sm:py-8 md:grid-cols-[8rem_minmax(0,1fr)] md:items-center md:px-10 lg:grid-cols-[10rem_minmax(0,1fr)] dark:text-primary dark:hover:text-white dark:focus-visible:outline-primary"
                             :aria-label="`Call ${phoneNumber}`"
                         >
@@ -85,6 +86,7 @@ const emailHref = `mailto:${emailAddress}`;
 
                         <a
                             :href="emailHref"
+                            data-cursor-variant="link"
                             class="grid min-w-0 gap-4 px-8 py-7 transition hover:text-dark-primary focus-visible:outline focus-visible:-outline-offset-2 focus-visible:outline-dark-primary sm:py-8 md:grid-cols-[8rem_minmax(0,1fr)] md:items-center md:px-10 lg:grid-cols-[10rem_minmax(0,1fr)] dark:hover:text-primary dark:focus-visible:outline-primary"
                         >
                             <span

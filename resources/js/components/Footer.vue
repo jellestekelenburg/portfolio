@@ -59,10 +59,6 @@ const socialLinks: FooterLink[] = [
                         class="h-10 not-dark:hidden"
                         alt=""
                     />
-                    <p class="mt-3 max-w-md text-gray-600 dark:text-gray-400">
-                        Made by me, built with Laravel, Vue and a healthy amount
-                        of attention to detail.
-                    </p>
                 </div>
 
                 <div class="md:text-right">
