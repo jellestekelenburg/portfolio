@@ -54,7 +54,7 @@ function selectTheme(value: Theme) {
 
             </span>
         </span>
-        <div :class="showMenu ? '' : 'hidden'" class="flex flex-col items-start justify-start gap-2 rounded-md  bg-gray-100 dark:bg-gray-900 p-2 text-gray-800 dark:text-white absolute -bottom-1 right-0 translate-y-full z-10 border dark:border-white/10 border-black/10">
+        <div :class="showMenu ? '' : 'hidden'" class="flex flex-col items-start justify-start gap-2 rounded-md  bg-gray-100/70 dark:bg-gray-900/70 backdrop-blur-lg p-2 text-gray-800 dark:text-white absolute -bottom-1 right-0 translate-y-full z-10 border dark:border-primary/20 border-dark-primary/20 shadow-xl shadow-primary/20">
             <button
                 v-for="option in themeOptions"
                 :key="option.value"
