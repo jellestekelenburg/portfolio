@@ -467,7 +467,7 @@ const shouldReduceMotion = useReducedMotion();
                                     </p>
                                 </div>
                                 <span
-                                    class="shrink-0 [--pixel-digit-size:0.375rem] sm:[--pixel-digit-size:0.45rem] text-dark-primary dark:text-primary"
+                                    class="shrink-0 text-dark-primary [--pixel-digit-size:0.375rem] sm:[--pixel-digit-size:0.45rem] dark:text-primary"
                                     aria-hidden="true"
                                 >
                                     <PixelDigits

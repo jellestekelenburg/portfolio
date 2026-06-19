@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import AppHead from '@/components/AppHead.vue';
 import Contact from '@/components/Contact.vue';
 import Footer from '@/components/Footer.vue';
 import TechStack from '@/components/TechStack.vue';
@@ -10,7 +10,12 @@ import { projects } from '@/data/projects';
 </script>
 
 <template>
-    <Head title="Portfolio" />
+    <AppHead
+        title="Portfolio"
+        :image="'/img/og.webp'"
+        :image-alt="'Jelle Stekelenburg'"
+        description="Welcome to my portfolio, I'm Jelle Stekelenburg, a developer building awesome things for the web!"
+    />
 
     <Navigation />
 

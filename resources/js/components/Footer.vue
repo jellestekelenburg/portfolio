@@ -44,7 +44,7 @@ const socialLinks: FooterLink[] = [
                 points="12.49 29.09 20 11.85 27.51 29.09 36.39 26.29 26.44 15.13 39.67 20.76 39.99 16.66 28.17 12.1 40 12.1 40 9.11 27.51 9.11 36.52 5.28 33.85 3.5 25.1 6.88 29.21 1.45 26.26 .64 21.73 5.72 21.39 0 18.38 0 18.04 5.72 13.51 .64 10.56 1.45 14.66 6.88 5.93 3.5 3.25 5.28 12.26 9.11 0 9.11 0 12.1 11.6 12.1 .01 16.57 .31 20.67 13.32 15.14 3.49 26.17 12.49 29.09"
             />
         </svg>
-        <div class="z-1 container relative">
+        <div class="relative z-1 container">
             <div
                 class="border-standard grid gap-8 border-x border-t px-8 py-8 md:grid-cols-[1fr_auto] md:items-end md:px-10"
             >

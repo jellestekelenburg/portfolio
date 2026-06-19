@@ -35,11 +35,23 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $siteName = config('app.name', 'Jelle Stekelenburg');
+        $description = 'Jelle Stekelenburg is a developer from the Netherlands focused on building fast, modern, and user-friendly web experiences.';
+
         return [
             ...parent::share($request),
-            'name' => config('app.name'),
+            'name' => $siteName,
             'auth' => [
                 'user' => $request->user(),
+            ],
+            'seo' => [
+                'siteName' => $siteName,
+                'description' => $description,
+                'url' => $request->url(),
+                'image' => asset('apple-touch-icon.png'),
+                'imageAlt' => $siteName,
+                'locale' => 'en_US',
+                'twitterCard' => 'summary',
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];

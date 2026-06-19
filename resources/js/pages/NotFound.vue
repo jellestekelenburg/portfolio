@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import AppHead from '@/components/AppHead.vue';
 import { Button } from '@/components/ui/button';
 import PixelDigits from '@/components/ui/PixelDigits.vue';
 </script>
 
 <template>
-    <Head title="404" />
+    <AppHead
+        title="404"
+        description="The page you are looking for does not exist."
+        noindex
+    />
     <div class="grain-overlay"></div>
     <main class="bg-gray-50 dark:bg-gray-900">
         <div class="flex min-h-screen w-full items-center justify-center">

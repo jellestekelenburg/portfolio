@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import AppHead from '@/components/AppHead.vue';
 import { useTheme } from '@/composables/useTheme';
 
 useTheme().setTheme('dark');
 </script>
 <template>
-    <Head title="Coming Soon | Jelle Stekelenburg" />
+    <AppHead title="Coming Soon" noindex />
     <div class="min-h-screen bg-gray-900">
         <section class="bg-gradient-up">
             <div
