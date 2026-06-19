@@ -69,3 +69,89 @@ html {
 .border-standard {
     @apply border-black/5 dark:border-white/5;
 }
+
+html.has-custom-cursor,
+html.has-custom-cursor * {
+    cursor: none !important;
+}
+
+.custom-cursor {
+    --cursor-logo-color: var(--color-dark-primary);
+    --cursor-ring-color: color-mix(
+        in oklab,
+        var(--color-dark-primary) 0%,
+        transparent
+    );
+    --cursor-ring-glow: color-mix(
+        in oklab,
+        var(--color-dark-primary) 20%,
+        transparent
+    );
+
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000000;
+    opacity: 0;
+    transition: opacity 160ms ease;
+}
+
+[data-theme='dark'] .custom-cursor {
+    --cursor-logo-color: color-mix(in oklab, var(--color-primary) 82%, white);
+    --cursor-ring-color: color-mix(
+        in oklab,
+        var(--color-primary) 0%,
+        transparent
+    );
+    --cursor-ring-glow: color-mix(
+        in oklab,
+        var(--color-primary) 20%,
+        transparent
+    );
+}
+
+.custom-cursor--visible {
+    opacity: 1;
+}
+
+.custom-cursor__logo,
+.custom-cursor__follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    will-change: transform;
+}
+
+.custom-cursor__logo {
+    width: 1.75rem;
+    height: 1.275rem;
+    background: var(--cursor-logo-color);
+    -webkit-mask: url('/img/branding/logo-inverse.svg') center / contain
+        no-repeat;
+    mask: url('/img/branding/logo-inverse.svg') center / contain no-repeat;
+    transition: background-color 180ms ease;
+}
+
+.custom-cursor__follower {
+    width: 2.875rem;
+    height: 2.875rem;
+    border: 1px solid var(--cursor-ring-color);
+    border-radius: 999px;
+    background: var(--cursor-ring-glow);
+    box-shadow: 0 0 1.75rem var(--cursor-ring-glow);
+    transition:
+        width 180ms ease,
+        height 180ms ease,
+        border-color 180ms ease,
+        background-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.custom-cursor--interactive .custom-cursor__follower {
+    width: 4rem;
+    height: 2.5rem;
+}
+
+.custom-cursor--primary {
+    opacity: 0;
+}

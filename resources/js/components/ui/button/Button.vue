@@ -106,6 +106,7 @@ const characterCount = computed(() => Math.max(slotText.value.length, 1))
   <Primitive
     v-bind="rootAttributes"
     data-slot="button"
+    :data-cursor-variant="variant"
     :as="resolvedAs"
     :as-child="asChild"
     :class="

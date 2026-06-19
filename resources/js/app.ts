@@ -4,6 +4,7 @@ import Lenis from 'lenis';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import '../css/app.css';
+import CustomCursor from '@/components/ui/CustomCursor.vue';
 import { useTheme } from '@/composables/useTheme';
 new Lenis({
     autoRaf: true,
@@ -19,7 +20,9 @@ createInertiaApp({
             import.meta.glob<DefineComponent>('./pages/**/*.vue'),
         ),
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
+        createApp({
+            render: () => h('div', [h(App, props), h(CustomCursor)]),
+        })
             .use(plugin)
             .mount(el);
     },
