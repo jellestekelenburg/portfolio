@@ -11,7 +11,7 @@ const emailHref = `mailto:${emailAddress}`;
     <section id="contact" class="relative z-1 scroll-mt-24">
         <div class="container">
             <div
-                class="border-standard relative overflow-hidden border-x py-16 md:py-20 lg:py-24"
+                class="border-standard relative overflow-hidden border-x border-t py-16 md:py-20 lg:py-24"
             >
                 <Lines />
 
@@ -54,31 +54,8 @@ const emailHref = `mailto:${emailAddress}`;
                             >
                                 Phone
                             </span>
-                            <!--                            <span class="relative hidden lg:block">-->
-                            <!--                                <span-->
-                            <!--                                    class="absolute bottom-0 -left-2 -translate-x-full font-mono leading-1 dark:text-gray-400"-->
-                            <!--                                    >(+31)</span-->
-                            <!--                                >-->
-                            <!--                                <PixelDigits-->
-                            <!--                                    :value="phoneNumber"-->
-                            <!--                                    :copy-text="phoneNumber"-->
-                            <!--                                    selectable-->
-                            <!--                                    class="max-w-full [&#45;&#45;pixel-copy-font-size:clamp(1.5rem,5vw,3rem)] [&#45;&#45;pixel-digit-gap:clamp(0.14rem,0.45vw,0.28rem)] [&#45;&#45;pixel-digit-size:clamp(0.16rem,0.5vw,0.28rem)] [&#45;&#45;pixel-space-width:clamp(0.28rem,0.9vw,0.65rem)]"-->
-                            <!--                                />-->
-                            <!--                            </span>-->
-                            <!--                            <span class="block lg:hidden">-->
-                            <!--                                <span-->
-                            <!--                                    class="font-mono leading-1 dark:text-gray-400"-->
-                            <!--                                    >(+31)</span-->
-                            <!--                                >-->
-                            <!--                                <span-->
-                            <!--                                    class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"-->
-                            <!--                                >-->
-                            <!--                                    {{ phoneNumber }}-->
-                            <!--                                </span>-->
-                            <!--                            </span>-->
                             <span
-                                class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 hover:italic sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"
+                                class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 group-hover:italic sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"
                             >
                                 {{ phoneNumber }}
                             </span>
@@ -87,7 +64,7 @@ const emailHref = `mailto:${emailAddress}`;
                         <a
                             :href="emailHref"
                             data-cursor-variant="link"
-                            class="grid min-w-0 gap-4 px-8 py-7 transition hover:text-dark-primary focus-visible:outline focus-visible:-outline-offset-2 focus-visible:outline-dark-primary sm:py-8 md:grid-cols-[8rem_minmax(0,1fr)] md:items-center md:px-10 lg:grid-cols-[10rem_minmax(0,1fr)] dark:hover:text-primary dark:focus-visible:outline-primary"
+                            class="grid group min-w-0 gap-4 px-8 py-7 transition hover:text-dark-primary focus-visible:outline focus-visible:-outline-offset-2 focus-visible:outline-dark-primary sm:py-8 md:grid-cols-[8rem_minmax(0,1fr)] md:items-center md:px-10 lg:grid-cols-[10rem_minmax(0,1fr)] dark:hover:text-primary dark:focus-visible:outline-primary"
                         >
                             <span
                                 class="font-grotesk text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-400"
@@ -95,7 +72,7 @@ const emailHref = `mailto:${emailAddress}`;
                                 Email
                             </span>
                             <span
-                                class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 hover:italic sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"
+                                class="min-w-0 font-grotesk text-xl leading-tight font-semibold wrap-anywhere text-gray-800 group-hover:italic sm:text-2xl md:text-3xl lg:text-4xl dark:text-gray-100"
                             >
                                 {{ emailAddress }}
                             </span>

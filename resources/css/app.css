@@ -153,13 +153,5 @@ html.has-custom-cursor * {
 }
 
 .custom-cursor--primary {
-    --cursor-logo-color: rgb(0 0 0);
-    --cursor-ring-color: rgb(0 0 0 / 0.26);
-    --cursor-ring-glow: rgb(0 0 0 / 0.1);
-}
-
-[data-theme='dark'] .custom-cursor--primary {
-    --cursor-logo-color: rgb(255 255 255);
-    --cursor-ring-color: rgb(255 255 255 / 0.38);
-    --cursor-ring-glow: rgb(255 255 255 / 0.14);
+    opacity: 0;
 }

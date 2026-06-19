@@ -39,8 +39,8 @@ onUnmounted(() => {
         <div class="container relative z-10">
             <div :class="!active ? 'border-b border-black/5 dark:border-white/5' : ''" class="py-4 flex items-center justify-between">
                 <img :src="dark ? '/img/branding/logo+t-d.svg' : '/img/branding/logo+t.svg'" class="w-50" alt="">
-                <div class="gap-x-8 items-center lg:flex hidden">
-                    <Menu/>
+                <div class="gap-x-8 items-center flex">
+                    <Menu class="lg:flex hidden"/>
                     <ThemeSwitcher />
                 </div>
             </div>
