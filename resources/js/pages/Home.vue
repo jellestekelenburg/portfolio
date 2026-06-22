@@ -12,7 +12,6 @@ import { projects } from '@/data/projects';
 <template>
     <AppHead
         title="Portfolio"
-        :image="'/img/og.webp'"
         :image-alt="'Jelle Stekelenburg'"
         description="Welcome to my portfolio, I'm Jelle Stekelenburg, a developer building awesome things for the web!"
     />

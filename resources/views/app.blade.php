@@ -5,7 +5,7 @@
         $siteName = config('app.name', 'Jelle Stekelenburg');
         $description = 'Jelle Stekelenburg is a developer from the Netherlands focused on building fast, modern, and user-friendly web experiences.';
         $url = url('/');
-        $image = asset('apple-touch-icon.png');
+        $image = asset('img/og.webp');
     @endphp
 
     <meta charset="utf-8">
@@ -37,8 +37,11 @@
         <meta data-inertia="og:site_name" property="og:site_name" content="{{ $siteName }}">
         <meta data-inertia="og:locale" property="og:locale" content="en_US">
         <meta data-inertia="og:image" property="og:image" content="{{ $image }}">
+        <meta data-inertia="og:image:type" property="og:image:type" content="image/webp">
+        <meta data-inertia="og:image:width" property="og:image:width" content="1000">
+        <meta data-inertia="og:image:height" property="og:image:height" content="743">
         <meta data-inertia="og:image:alt" property="og:image:alt" content="{{ $siteName }}">
-        <meta data-inertia="twitter:card" name="twitter:card" content="summary">
+        <meta data-inertia="twitter:card" name="twitter:card" content="summary_large_image">
         <meta data-inertia="twitter:title" name="twitter:title" content="{{ $siteName }}">
         <meta data-inertia="twitter:description" name="twitter:description" content="{{ $description }}">
         <meta data-inertia="twitter:image" name="twitter:image" content="{{ $image }}">

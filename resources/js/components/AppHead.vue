@@ -7,6 +7,9 @@ type SharedSeo = {
     description?: string;
     url?: string;
     image?: string;
+    imageType?: string;
+    imageWidth?: number;
+    imageHeight?: number;
     imageAlt?: string;
     locale?: string;
     twitterCard?: string;
@@ -43,6 +46,28 @@ const description = computed(
 );
 const url = computed(() => props.url ?? seo.value?.url ?? page.url);
 const image = computed(() => props.image ?? seo.value?.image ?? '');
+const absoluteImage = computed(() => {
+    if (!image.value) {
+        return '';
+    }
+
+    if (/^https?:\/\//i.test(image.value)) {
+        return image.value;
+    }
+
+    const baseUrl =
+        seo.value?.url ??
+        (typeof window !== 'undefined' ? window.location.origin : '');
+
+    if (!baseUrl) {
+        return image.value;
+    }
+
+    return new URL(image.value, baseUrl).toString();
+});
+const imageType = computed(() => seo.value?.imageType ?? 'image/webp');
+const imageWidth = computed(() => seo.value?.imageWidth ?? 1000);
+const imageHeight = computed(() => seo.value?.imageHeight ?? 743);
 const imageAlt = computed(() => props.imageAlt ?? seo.value?.imageAlt ?? '');
 const locale = computed(() => seo.value?.locale ?? 'en_US');
 const twitterCard = computed(() => seo.value?.twitterCard ?? 'summary');
@@ -80,7 +105,25 @@ const twitterCard = computed(() => seo.value?.twitterCard ?? 'summary');
             v-if="image"
             head-key="og:image"
             property="og:image"
-            :content="image"
+            :content="absoluteImage"
+        />
+        <meta
+            v-if="imageType"
+            head-key="og:image:type"
+            property="og:image:type"
+            :content="imageType"
+        />
+        <meta
+            v-if="imageWidth"
+            head-key="og:image:width"
+            property="og:image:width"
+            :content="String(imageWidth)"
+        />
+        <meta
+            v-if="imageHeight"
+            head-key="og:image:height"
+            property="og:image:height"
+            :content="String(imageHeight)"
         />
         <meta
             v-if="imageAlt"
@@ -108,7 +151,7 @@ const twitterCard = computed(() => seo.value?.twitterCard ?? 'summary');
             v-if="image"
             head-key="twitter:image"
             name="twitter:image"
-            :content="image"
+            :content="absoluteImage"
         />
         <meta
             v-if="imageAlt"
