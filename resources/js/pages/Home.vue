@@ -44,7 +44,9 @@ import { projects } from '@/data/projects';
                             awesome things for the web.
                         </h1>
 
-                        <p class="mt-5 sm:w-4/5 text-gray-600 dark:text-gray-400">
+                        <p
+                            class="mt-5 text-gray-600 sm:w-4/5 dark:text-gray-400"
+                        >
                             Hi, I'm Jelle — a developer from the Netherlands
                             focused on building fast, modern, and user-friendly
                             web experiences.

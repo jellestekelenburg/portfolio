@@ -1,6 +1,6 @@
 export const projects = [
     {
-        title: 'File manager',
+        title: 'Nuvio',
         description:
             'A modern file management application built with Laravel 13, Vue and InertiaJS. The project uses Amazon AWS S3 for secure cloud-based file storage and management. It combines a clean interface with a fast and responsive user experience.',
         image: '/img/file-manager.webp',
