@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {
-    Cloud,
     CreditCard,
     Gauge,
     Image,
@@ -8,7 +7,6 @@ import {
     PenTool,
     PlugZap,
     ShoppingBag,
-    Terminal,
     Workflow,
     Boxes,
     Code2,
@@ -175,7 +173,10 @@ const shouldReduceMotion = useReducedMotion();
                                 <p
                                     class="mt-5 max-w-sm text-gray-600 dark:text-gray-400"
                                 >
-                                    The core tools and capabilities I use to build complete web applications: interfaces, Laravel backends, integrations, e-commerce flows and cloud storage.
+                                    The core tools and capabilities I use to
+                                    build complete web applications: interfaces,
+                                    Laravel backends, integrations, e-commerce
+                                    flows and cloud storage.
                                 </p>
                             </header>
 
@@ -377,7 +378,10 @@ const shouldReduceMotion = useReducedMotion();
                         <p
                             class="relative mx-auto mt-4 max-w-2xl text-base text-gray-600 md:text-lg dark:text-gray-400"
                         >
-                            The core tools and capabilities I use to build complete web applications: interfaces, Laravel backends, integrations, e-commerce flows and cloud storage.
+                            The core tools and capabilities I use to build
+                            complete web applications: interfaces, Laravel
+                            backends, integrations, e-commerce flows and cloud
+                            storage.
                         </p>
                     </header>
 
